@@ -1,3 +1,4 @@
+import 'package:bejoy/auth/authVerif.dart';
 import 'package:flutter/material.dart';
 
 /* ++++++++++++++++++++++++ FIREBASE ++++++++++++++++++++++++++ */
@@ -24,9 +25,7 @@ class MainApp extends StatelessWidget {
                 print('There is an error somewhere around here...');
                 return Text('Somethin went WRONG! PIPIPI');
               } else if (snapshot.hasData) {
-                return Scaffold(
-                  backgroundColor: Colors.black,
-                );
+                return authVerif();
               } else {
                 return Center(child: CircularProgressIndicator());
               }
