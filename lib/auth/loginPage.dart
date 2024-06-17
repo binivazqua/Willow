@@ -1,11 +1,7 @@
-
-/*
 import 'package:bejoy/components/logoTile.dart';
 import 'package:bejoy/components/textField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterin/models/colorConstants.dart';
-import 'package:flutterin/pages/subs/registerPage.dart';
 
 class loginPagee extends StatefulWidget {
   const loginPagee({super.key});
@@ -79,10 +75,7 @@ class _loginPageeState extends State<loginPagee> {
               obscureText: true,
             ),
             TextButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => registerPage()));
-              },
+              onPressed: () {},
               child: const Text(
                 'New to Bejoy? Register!',
                 style: TextStyle(
@@ -100,7 +93,7 @@ class _loginPageeState extends State<loginPagee> {
               onPressed: signInUser,
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith(
-                      (states) => colorConstants.yellowish)),
+                      (states) => Colors.amber)),
               child: const Text(
                 'Go!',
                 style: TextStyle(
@@ -131,4 +124,3 @@ class _loginPageeState extends State<loginPagee> {
     );
   }
 }
-*/
