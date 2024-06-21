@@ -69,8 +69,8 @@ class _registerPageState extends State<registerPage> {
     }
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
+      body: Center(
+        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -130,8 +130,11 @@ class _registerPageState extends State<registerPage> {
                               MaterialPageRoute(
                                   builder: (context) => loginPagee()));
                         },
-                        child: const Text('Go to login!'))
+                        child: const Text('Go to login!')),
                   ],
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Padding(
                   padding:

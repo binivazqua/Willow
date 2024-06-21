@@ -1,4 +1,5 @@
 import 'package:bejoy/components/textField.dart';
+import 'package:bejoy/pages/data/tabs/tabs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -40,8 +41,8 @@ class _userDataState extends State<userData> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      body: SingleChildScrollView(
-        child: Center(
+      body: Center(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Text('Fill in some data!'),
@@ -68,14 +69,38 @@ class _userDataState extends State<userData> {
                   hintDesiredText: 'favorite color',
                   controller: _color,
                   obscureText: false),
-              ElevatedButton(
-                onPressed: addUserDetails,
-                child: Text(
-                  'Send Data',
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.deepPurple)),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: addUserDetails,
+                    child: Text(
+                      'Send Data',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ButtonStyle(
+                        backgroundColor:
+                            WidgetStatePropertyAll(Colors.deepPurple)),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => userDiagnosticTest()));
+                    },
+                    child: Text(
+                      'Go!',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ButtonStyle(
+                        backgroundColor:
+                            WidgetStatePropertyAll(Colors.deepPurple)),
+                  )
+                ],
               )
             ],
           ),
