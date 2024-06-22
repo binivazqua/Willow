@@ -1,3 +1,4 @@
+import 'package:bejoy/data/tabs/corporal.dart';
 import 'package:bejoy/data/tabs/familiar.dart';
 import 'package:bejoy/data/tabs/fisica.dart';
 import 'package:bejoy/data/tabs/general.dart';
@@ -16,7 +17,7 @@ class _userDiagnosticTestState extends State<userDiagnosticTest> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 5,
+        length: 6,
         child: Scaffold(
           appBar: AppBar(
               title: Text('Initial Diagnostic'),
@@ -55,10 +56,17 @@ class _userDiagnosticTestState extends State<userDiagnosticTest> {
                       color: Colors.white,
                     ),
                   ),
+                  Tab(
+                    icon: Icon(
+                      Icons.health_and_safety_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
                 ],
               )),
           body: TabBarView(children: [
             percepcionGeneral(),
+            percepcionCorporal(),
             percepcionFamiliar(),
             profesionalPsic(),
             percepcionFisica(),
