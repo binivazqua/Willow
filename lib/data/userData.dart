@@ -1,5 +1,5 @@
 import 'package:bejoy/components/textField.dart';
-import 'package:bejoy/pages/data/tabs/tabs.dart';
+import 'package:bejoy/data/tabs/tabs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';

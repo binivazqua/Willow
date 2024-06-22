@@ -12,6 +12,9 @@ class _percepcionFisicaState extends State<percepcionFisica> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[100],
+      body: Center(
+        child: Text('Evaluación física'),
+      ),
     );
   }
 }

@@ -12,6 +12,9 @@ class _miedoSintomasState extends State<miedoSintomas> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.pink[100],
+      body: Center(
+        child: Text('OCDE y miedos'),
+      ),
     );
   }
 }

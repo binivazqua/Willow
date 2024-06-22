@@ -1,3 +1,8 @@
+import 'package:bejoy/data/tabs/familiar.dart';
+import 'package:bejoy/data/tabs/fisica.dart';
+import 'package:bejoy/data/tabs/general.dart';
+import 'package:bejoy/data/tabs/miedo.dart';
+import 'package:bejoy/data/tabs/profesionalPsic.dart';
 import 'package:flutter/material.dart';
 
 class userDiagnosticTest extends StatefulWidget {
@@ -47,11 +52,18 @@ class _userDiagnosticTestState extends State<userDiagnosticTest> {
                   Tab(
                     icon: Icon(
                       Icons.health_and_safety_rounded,
+                      color: Colors.white,
                     ),
                   ),
                 ],
               )),
-          body: TabBarView(children: []),
+          body: TabBarView(children: [
+            percepcionGeneral(),
+            percepcionFamiliar(),
+            profesionalPsic(),
+            percepcionFisica(),
+            miedoSintomas(),
+          ]),
         ));
   }
 }
