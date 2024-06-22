@@ -36,7 +36,7 @@ class _dropdownMenuState extends State<dropdownMenu> {
           labelText: widget.theme,
           labelStyle: TextStyle(color: widget.textColor),
           filled: true,
-          fillColor: widget.dropdownColor,
+          fillColor: Colors.white,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),

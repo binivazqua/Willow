@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class profesionalPsic extends StatefulWidget {
-  const profesionalPsic({super.key});
+class profesionalPsicFis extends StatefulWidget {
+  const profesionalPsicFis({super.key});
 
   @override
-  State<profesionalPsic> createState() => _profesionalPsicState();
+  State<profesionalPsicFis> createState() => _profesionalPsicFisState();
 }
 
-class _profesionalPsicState extends State<profesionalPsic> {
+class _profesionalPsicFisState extends State<profesionalPsicFis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

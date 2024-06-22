@@ -1,6 +1,6 @@
 import 'package:bejoy/data/tabs/corporal.dart';
 import 'package:bejoy/data/tabs/familiar.dart';
-import 'package:bejoy/data/tabs/fisica.dart';
+import 'package:bejoy/data/tabs/perfil.dart';
 import 'package:bejoy/data/tabs/general.dart';
 import 'package:bejoy/data/tabs/miedo.dart';
 import 'package:bejoy/data/tabs/profesionalPsic.dart';
@@ -68,9 +68,9 @@ class _userDiagnosticTestState extends State<userDiagnosticTest> {
             percepcionGeneral(),
             percepcionCorporal(),
             percepcionFamiliar(),
-            profesionalPsic(),
-            percepcionFisica(),
             miedoSintomas(),
+            perfilABA(),
+            profesionalPsicFis(),
           ]),
         ));
   }
