@@ -1,6 +1,8 @@
 import 'package:bejoy/components/userData/checkbox.dart';
 import 'package:bejoy/components/userData/dropDown.dart';
+import 'package:bejoy/components/userData/longTextField.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class perfilABA extends StatefulWidget {
   const perfilABA({super.key});
@@ -42,6 +44,23 @@ class _perfilABAState extends State<perfilABA> {
   bool? _comidasprevias = false;
   bool? _comidasposteriores = false;
 
+  late double _frectaquicardia;
+  late double _frecmareo;
+  late double _frecdolorabdominal;
+  late double _frecbano;
+  late double _frecmovcorporal;
+
+  bool? _compmovcorporal = false;
+  bool? _compejercicio = false;
+  bool? _compsaltarcomidas = false;
+  bool? _comprestriccion = false;
+  bool? _compactividad = false;
+  bool? _compaislamiento = false;
+
+  final TextEditingController _sentirdespuescomp = new TextEditingController();
+  final TextEditingController _reglasdesafiar = new TextEditingController();
+
+  final OverlayPortalController popupController = new OverlayPortalController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +69,7 @@ class _perfilABAState extends State<perfilABA> {
             child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Responde respecto al nivel en el que te sientas identificada',
@@ -257,6 +277,172 @@ class _perfilABAState extends State<perfilABA> {
                       _comidasposteriores = newValue;
                     });
                   }),
+              SizedBox(
+                height: 15,
+              ),
+              Text('Taquicardia'),
+              RatingBar.builder(
+                  tapOnlyMode: true,
+                  glow: false,
+                  itemCount: 5,
+                  initialRating: 0,
+                  minRating: 0,
+                  itemBuilder: (context, _) => Icon(
+                        Icons.star_rate_rounded,
+                        color: Colors.purple[100],
+                      ),
+                  onRatingUpdate: (rating) =>
+                      {_frectaquicardia = rating, print(_frectaquicardia)}),
+              SizedBox(
+                height: 15,
+              ),
+              Text('Mareo o nauseas'),
+              RatingBar.builder(
+                  tapOnlyMode: true,
+                  glow: false,
+                  itemCount: 5,
+                  initialRating: 0,
+                  minRating: 0,
+                  itemBuilder: (context, _) => Icon(
+                        Icons.star_rate_rounded,
+                        color: Colors.purple[100],
+                      ),
+                  onRatingUpdate: (rating) =>
+                      {_frecmareo = rating, print(_frecmareo)}),
+              SizedBox(
+                height: 15,
+              ),
+              Text('Dolor abdominal'),
+              RatingBar.builder(
+                  tapOnlyMode: true,
+                  glow: false,
+                  itemCount: 5,
+                  initialRating: 0,
+                  minRating: 0,
+                  itemBuilder: (context, _) => Icon(
+                        Icons.star_rate_rounded,
+                        color: Colors.purple[100],
+                      ),
+                  onRatingUpdate: (rating) => {
+                        _frecdolorabdominal = rating,
+                        print(_frecdolorabdominal)
+                      }),
+              SizedBox(
+                height: 15,
+              ),
+              Text('Necesidad de ir al baño'),
+              RatingBar.builder(
+                  tapOnlyMode: true,
+                  glow: false,
+                  itemCount: 5,
+                  initialRating: 0,
+                  minRating: 0,
+                  itemBuilder: (context, _) => Icon(
+                        Icons.star_rate_rounded,
+                        color: Colors.purple[100],
+                      ),
+                  onRatingUpdate: (rating) =>
+                      {_frecbano = rating, print(_frecbano)}),
+              SizedBox(
+                height: 15,
+              ),
+              Text('Necesidad de movimiento corporal'),
+              RatingBar.builder(
+                  tapOnlyMode: true,
+                  glow: false,
+                  itemCount: 5,
+                  initialRating: 0,
+                  minRating: 0,
+                  itemBuilder: (context, _) => Icon(
+                        Icons.star_rate_rounded,
+                        color: Colors.purple[100],
+                      ),
+                  onRatingUpdate: (rating) =>
+                      {_frecmovcorporal = rating, print(_frecmovcorporal)}),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                  '¿Cuáles de las siguientes actitudes compensatorias has experimentado?'),
+              SizedBox(
+                height: 15,
+              ),
+              myCheckbox(
+                  label: 'Movimiento corporal',
+                  isChecked: _compmovcorporal,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _compmovcorporal = newValue;
+                    });
+                  }),
+              myCheckbox(
+                  label: 'Ejercicio exhaustivo',
+                  isChecked: _compejercicio,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _compejercicio = newValue;
+                    });
+                  }),
+              myCheckbox(
+                  label: 'Saltar tiempos de comida',
+                  isChecked: _compsaltarcomidas,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _compsaltarcomidas = newValue;
+                    });
+                  }),
+              myCheckbox(
+                  label: 'Restringir algún alimento o grupo de alimentos',
+                  isChecked: _comprestriccion,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _comprestriccion = newValue;
+                    });
+                  }),
+              myCheckbox(
+                  label: 'Privarme de alguna actividad recreativa',
+                  isChecked: _compactividad,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _compactividad = newValue;
+                    });
+                  }),
+              myCheckbox(
+                  label: 'Aislarme',
+                  isChecked: _compaislamiento,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _compaislamiento = newValue;
+                    });
+                  }),
+              SizedBox(
+                height: 15,
+              ),
+              TextButton(
+                  onPressed: popupController.toggle,
+                  child: OverlayPortal(
+                      controller: popupController,
+                      overlayChildBuilder: (BuildContext context) {
+                        return Positioned(
+                            top: 100,
+                            right: 100,
+                            child: ColoredBox(
+                              color: Colors.purple,
+                              child: Text('Fuck it'),
+                            ));
+                      })),
+              SizedBox(
+                height: 10,
+              ),
+              Text('¿Qué reglas creadas por tu TCA quisieras desafiar?'),
+              SizedBox(
+                height: 10,
+              ),
+              longTextField(
+                  controller: _reglasdesafiar,
+                  label: '',
+                  fillColor: Colors.white,
+                  filled: true)
             ],
           ),
         )),
