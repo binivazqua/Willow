@@ -58,7 +58,9 @@ class _perfilABAState extends State<perfilABA> {
   bool? _compaislamiento = false;
 
   final TextEditingController _sentirdespuescomp = new TextEditingController();
-  final TextEditingController _reglasdesafiar = new TextEditingController();
+  final TextEditingController _regla1desafiar = new TextEditingController();
+  final TextEditingController _regla2desafiar = new TextEditingController();
+  final TextEditingController _regla3desafiar = new TextEditingController();
 
   final OverlayPortalController popupController = new OverlayPortalController();
   @override
@@ -67,12 +69,12 @@ class _perfilABAState extends State<perfilABA> {
       body: SingleChildScrollView(
         child: Center(
             child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Responde respecto al nivel en el que te sientas identificada',
+                'Responde respecto al nivel en el que te sientas identificada.',
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -418,7 +420,10 @@ class _perfilABAState extends State<perfilABA> {
               SizedBox(
                 height: 15,
               ),
+              /*
               TextButton(
+                  style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.purple)),
                   onPressed: popupController.toggle,
                   child: OverlayPortal(
                       controller: popupController,
@@ -434,15 +439,29 @@ class _perfilABAState extends State<perfilABA> {
               SizedBox(
                 height: 10,
               ),
+
+              */
               Text('¿Qué reglas creadas por tu TCA quisieras desafiar?'),
               SizedBox(
-                height: 10,
+                height: 15,
               ),
               longTextField(
-                  controller: _reglasdesafiar,
-                  label: '',
+                  controller: _regla1desafiar,
+                  label: 'regla 1',
                   fillColor: Colors.white,
-                  filled: true)
+                  filled: true),
+              SizedBox(height: 10),
+              longTextField(
+                  controller: _regla2desafiar,
+                  label: 'regla 2',
+                  fillColor: Colors.white,
+                  filled: true),
+              SizedBox(height: 10),
+              longTextField(
+                  controller: _regla3desafiar,
+                  label: 'regla 3',
+                  fillColor: Colors.white,
+                  filled: true),
             ],
           ),
         )),
