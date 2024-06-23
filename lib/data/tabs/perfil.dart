@@ -30,6 +30,17 @@ class _perfilABAState extends State<perfilABA> {
   bool? _sintoma3Checked = false;
   bool? _sintoma4Checked = false;
   bool? _sintoma5Checked = false;
+  bool? _sintoma6Checked = false;
+  bool? _sintoma7Checked = false;
+  bool? _sintoma8Checked = false;
+
+  bool? _conteodecalorias = false;
+  bool? _conteomacros = false;
+  bool? _porciones = false;
+  bool? _sabor = false;
+  bool? _textura = false;
+  bool? _comidasprevias = false;
+  bool? _comidasposteriores = false;
 
   @override
   Widget build(BuildContext context) {
@@ -166,18 +177,84 @@ class _perfilABAState extends State<perfilABA> {
                   }),
               myCheckbox(
                   label: 'Sudor en palmas',
-                  isChecked: _sintoma5Checked,
+                  isChecked: _sintoma6Checked,
                   onChanged: (bool? newValue) {
                     setState(() {
-                      _sintoma5Checked = newValue;
+                      _sintoma6Checked = newValue;
                     });
                   }),
               myCheckbox(
                   label: 'Hormigueo',
-                  isChecked: _sintoma5Checked,
+                  isChecked: _sintoma7Checked,
                   onChanged: (bool? newValue) {
                     setState(() {
-                      _sintoma5Checked = newValue;
+                      _sintoma7Checked = newValue;
+                    });
+                  }),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                  'Cuando estás a punto de consumir algún alimento, o bien, haciéndolo.'),
+              Text(
+                  '¿Cuáles de los siguientes representan mejor tus pensamientos?'),
+              SizedBox(
+                height: 10,
+              ),
+              myCheckbox(
+                  label: 'Conteo de calorías',
+                  isChecked: _conteodecalorias,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _conteodecalorias = newValue;
+                    });
+                  }),
+              myCheckbox(
+                  label: 'Conteo de macronutrientes',
+                  isChecked: _conteomacros,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _conteomacros = newValue;
+                    });
+                  }),
+              myCheckbox(
+                  label: 'Porciones',
+                  isChecked: _porciones,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _porciones = newValue;
+                    });
+                  }),
+              myCheckbox(
+                  label: 'Sabor',
+                  isChecked: _sabor,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _sabor = newValue;
+                    });
+                  }),
+              myCheckbox(
+                  label: 'Textura',
+                  isChecked: _textura,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _textura = newValue;
+                    });
+                  }),
+              myCheckbox(
+                  label: 'Comidas previas',
+                  isChecked: _comidasprevias,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _comidasprevias = newValue;
+                    });
+                  }),
+              myCheckbox(
+                  label: 'Comidas posteriores',
+                  isChecked: _comidasposteriores,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      _comidasposteriores = newValue;
                     });
                   }),
             ],
