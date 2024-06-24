@@ -12,6 +12,13 @@ class profesionalPsicFis extends StatefulWidget {
   State<profesionalPsicFis> createState() => _profesionalPsicFisState();
 }
 
+List<String> _estadoNutricional = [
+  'Sobrepeso',
+  'Saludable',
+  'Insuficiente',
+  'Desnutrición'
+];
+
 class _profesionalPsicFisState extends State<profesionalPsicFis> {
   final TextEditingController _diagnostico = new TextEditingController();
 
@@ -43,6 +50,24 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
 
   final TextEditingController _razonesprospectoNR = new TextEditingController();
   final TextEditingController _pesoactual = new TextEditingController();
+
+  String currentOption = _estadoNutricional[0];
+
+  bool? _anemia = false;
+  bool? _amenorrea = false;
+  bool? _descalcificacion = false;
+  bool? _bradicardia = false;
+  bool? _hipotension = false;
+
+  final TextEditingController _medicacion = new TextEditingController();
+
+  List<String> _duraciontratamiento = [
+    '1-2 meses',
+    '3-6 meses',
+    '6 meses - 1 año',
+    '2 años',
+    '3 años o más'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -364,7 +389,210 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
               shortTextField(
                   controller: _pesoactual, label: 'kg', filled: true),
               SizedBox(height: 15),
-              Text('De acuerdo a su BMI, el paciente está en estado...')
+              Text('De acuerdo a su BMI, el paciente está en estado...'),
+              ListTile(
+                title: Text(_estadoNutricional.first),
+                leading: Radio(
+                    value: _estadoNutricional.first,
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
+              ListTile(
+                title: Text(_estadoNutricional[1]),
+                leading: Radio(
+                    value: _estadoNutricional[1],
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
+              ListTile(
+                title: Text(_estadoNutricional[2]),
+                leading: Radio(
+                    value: _estadoNutricional[2],
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
+              ListTile(
+                title: Text(_estadoNutricional[3]),
+                leading: Radio(
+                    value: _estadoNutricional[3],
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text('Otros diagnósticos clínicos asociados con el TCA:'),
+              myCheckbox(
+                isChecked: _anemia,
+                label: 'Anemia',
+                onChanged: (bool? newValue) {
+                  setState(() {
+                    _anemia = newValue;
+                  });
+                },
+              ),
+              myCheckbox(
+                isChecked: _amenorrea,
+                label: 'Amenorrea',
+                onChanged: (bool? newValue) {
+                  setState(() {
+                    _amenorrea = newValue;
+                  });
+                },
+              ),
+              myCheckbox(
+                isChecked: _descalcificacion,
+                label: 'Descalcificación ósea',
+                onChanged: (bool? newValue) {
+                  setState(() {
+                    _descalcificacion = newValue;
+                  });
+                },
+              ),
+              myCheckbox(
+                isChecked: _bradicardia,
+                label: 'Bradicardia',
+                onChanged: (bool? newValue) {
+                  setState(() {
+                    _bradicardia = newValue;
+                  });
+                },
+              ),
+              myCheckbox(
+                isChecked: _hipotension,
+                label: 'Hipotensión',
+                onChanged: (bool? newValue) {
+                  setState(() {
+                    _hipotension = newValue;
+                  });
+                },
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text('¿Está recibiendo medicación de algún tipo?'),
+              SizedBox(
+                height: 10,
+              ),
+              longTextField(
+                  controller: _medicacion,
+                  label: '',
+                  fillColor: Colors.white,
+                  filled: true),
+              SizedBox(
+                height: 15,
+              ),
+              Text('Tiempo en rehabilitación psicológica'),
+              SizedBox(height: 10),
+              ListTile(
+                title: Text(_duraciontratamiento[1]),
+                leading: Radio(
+                    value: _duraciontratamiento[1],
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
+              ListTile(
+                title: Text(_duraciontratamiento[2]),
+                leading: Radio(
+                    value: _duraciontratamiento[2],
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
+              ListTile(
+                title: Text(_duraciontratamiento[3]),
+                leading: Radio(
+                    value: _duraciontratamiento[3],
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
+              ListTile(
+                title: Text(_duraciontratamiento[4]),
+                leading: Radio(
+                    value: _duraciontratamiento[4],
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text('Tiempo en rehabilitación alimentaria'),
+              SizedBox(height: 10),
+              ListTile(
+                title: Text(_duraciontratamiento[1]),
+                leading: Radio(
+                    value: _duraciontratamiento[1],
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
+              ListTile(
+                title: Text(_duraciontratamiento[2]),
+                leading: Radio(
+                    value: _duraciontratamiento[2],
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
+              ListTile(
+                title: Text(_duraciontratamiento[3]),
+                leading: Radio(
+                    value: _duraciontratamiento[3],
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
+              ListTile(
+                title: Text(_duraciontratamiento[4]),
+                leading: Radio(
+                    value: _duraciontratamiento[4],
+                    groupValue: currentOption,
+                    onChanged: (value) {
+                      setState(() {
+                        currentOption = value.toString();
+                      });
+                    }),
+              ),
             ],
           ),
         ),
