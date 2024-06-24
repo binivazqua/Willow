@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class shortTextField extends StatelessWidget {
-  final TextEditingController controller;
+  TextEditingController controller;
   final String label;
   Color? fillColor;
   final bool filled;
@@ -40,6 +40,7 @@ class shortTextField extends StatelessWidget {
       width: 100,
       child: TextField(
         decoration: _textFieldStyle(),
+        controller: controller,
       ),
     );
   }

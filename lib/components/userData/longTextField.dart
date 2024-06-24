@@ -39,6 +39,7 @@ class longTextField extends StatelessWidget {
     return Container(
       width: 320,
       child: TextField(
+        controller: controller,
         decoration: _textFieldStyle(),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:bejoy/components/userData/longTextField.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class percepcionGeneral extends StatefulWidget {
@@ -10,13 +11,53 @@ class percepcionGeneral extends StatefulWidget {
 }
 
 class _percepcionGeneralState extends State<percepcionGeneral> {
-  final TextEditingController atribute1 = new TextEditingController();
-  final TextEditingController atribute2 = new TextEditingController();
-  final TextEditingController atribute3 = new TextEditingController();
-  final TextEditingController mejor_rasgo = new TextEditingController();
-  final TextEditingController comer_es = new TextEditingController();
-  final TextEditingController comer_se_siente = new TextEditingController();
-  final TextEditingController comer_comoda = new TextEditingController();
+  TextEditingController atribute1 = new TextEditingController();
+  TextEditingController atribute2 = new TextEditingController();
+  TextEditingController atribute3 = new TextEditingController();
+  TextEditingController mejor_rasgo = new TextEditingController();
+  TextEditingController comer_es = new TextEditingController();
+  TextEditingController comer_se_siente = new TextEditingController();
+  TextEditingController comer_comoda = new TextEditingController();
+
+  @override
+  void dispose() {
+    atribute1.dispose();
+    atribute2.dispose();
+    atribute3.dispose();
+    mejor_rasgo.dispose();
+    comer_es.dispose();
+    comer_se_siente.dispose();
+    comer_comoda.dispose();
+
+    super.dispose();
+  }
+
+  FirebaseFirestore database = FirebaseFirestore.instance;
+
+  Future _sendAtributos() async {
+    print('atributo 1: ${atribute1.text}');
+    print('atributo 2: ${atribute2.text}');
+    print('atributo 3: ${atribute3.text}');
+    print('mejor rasgo: ${mejor_rasgo.text}');
+    print('comer es: ${comer_es.text}');
+    print('comer se siente: ${comer_se_siente.text}');
+    print('comer comoda: ${comer_comoda.text}');
+
+    try {
+      await database.collection('initial_diagnostic').add({
+        'atributo 1': atribute1.text.trim(),
+        'atributo 2': atribute2.text.trim(),
+        'atributo 3': atribute3.text.trim(),
+        'mejor rasgo': mejor_rasgo.text.trim(),
+        'comer es': comer_es.text.trim(),
+        'comer se siente': comer_se_siente.text.trim(),
+        'comer comoda': comer_comoda.text.trim(),
+      });
+      print('User data sent.');
+    } catch (error) {
+      print('Error sending data: $error.');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +78,7 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
                   shortTextField(
                     filled: true,
                     controller: atribute1,
-                    label: '',
+                    label: 'hh',
                     fillColor: Colors.purple[100],
                   ),
                   shortTextField(
@@ -120,6 +161,8 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
                   label: '',
                   fillColor: Colors.white,
                   filled: true),
+              ElevatedButton(
+                  onPressed: _sendAtributos, child: Text('Send atributos'))
             ],
           ),
         ),
