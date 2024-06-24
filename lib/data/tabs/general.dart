@@ -1,6 +1,7 @@
 import 'package:bejoy/components/userData/longTextField.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class percepcionGeneral extends StatefulWidget {
@@ -18,6 +19,7 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
   TextEditingController comer_es = new TextEditingController();
   TextEditingController comer_se_siente = new TextEditingController();
   TextEditingController comer_comoda = new TextEditingController();
+  TextEditingController cambiar_algo = new TextEditingController();
 
   @override
   void dispose() {
@@ -34,28 +36,53 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
 
   FirebaseFirestore database = FirebaseFirestore.instance;
 
-  Future _sendAtributos() async {
+  Future<void> _sendAtributos(User? currentUser) async {
+    if (currentUser == null) {
+      print('User is not logged in.');
+      return;
+    }
+
     print('atributo 1: ${atribute1.text}');
     print('atributo 2: ${atribute2.text}');
     print('atributo 3: ${atribute3.text}');
     print('mejor rasgo: ${mejor_rasgo.text}');
     print('comer es: ${comer_es.text}');
     print('comer se siente: ${comer_se_siente.text}');
-    print('comer comoda: ${comer_comoda.text}');
+    print('para comer comoda necesito: ${comer_comoda.text}');
+    print('si pudiera cambiar algo de mi, sería: ${cambiar_algo.text}');
 
     try {
-      await database.collection('initial_diagnostic').add({
+      // Reference the user's document
+      DocumentReference userDocRef =
+          database.collection('users').doc(currentUser.uid);
+
+      // Add data to the 'general perception' subcollection
+      await userDocRef
+          .collection('initial_diagnostic')
+          .doc('general_perception')
+          .set({
         'atributo 1': atribute1.text.trim(),
         'atributo 2': atribute2.text.trim(),
         'atributo 3': atribute3.text.trim(),
-        'mejor rasgo': mejor_rasgo.text.trim(),
+        'rasgo mas preciado': mejor_rasgo.text.trim(),
         'comer es': comer_es.text.trim(),
         'comer se siente': comer_se_siente.text.trim(),
-        'comer comoda': comer_comoda.text.trim(),
+        'para comer comoda necesito': comer_comoda.text.trim(),
+        'si pudiera cambiar algo de mi, sería': cambiar_algo.text.trim(),
       });
+
       print('User data sent.');
     } catch (error) {
       print('Error sending data: $error.');
+    }
+  }
+
+  Future<void> sendDataCholo() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      await _sendAtributos(user);
+    } catch (error) {
+      print('Encountered an error sending data: $error.');
     }
   }
 
@@ -63,110 +90,112 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: Column(
-            children: [
-              Text('Enlista 3 atributos que mejor te describan: '),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  shortTextField(
-                    filled: true,
-                    controller: atribute1,
-                    label: 'hh',
-                    fillColor: Colors.purple[100],
-                  ),
-                  shortTextField(
-                    controller: atribute2,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Column(
+              children: [
+                Text('Enlista 3 atributos que mejor te describan: '),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    shortTextField(
+                      filled: true,
+                      controller: atribute1,
+                      label: 'hh',
+                      fillColor: Colors.purple[100],
+                    ),
+                    shortTextField(
+                      controller: atribute2,
+                      label: '',
+                      fillColor: Colors.white,
+                      filled: true,
+                    ),
+                    shortTextField(
+                      filled: true,
+                      controller: atribute3,
+                      label: '',
+                      fillColor: Colors.white,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 5),
+                Text('¿Cuál es el rasgo que más aprecias de ti?'),
+                SizedBox(height: 10),
+                longTextField(
+                    controller: mejor_rasgo,
                     label: '',
                     fillColor: Colors.white,
-                    filled: true,
-                  ),
-                  shortTextField(
-                    filled: true,
-                    controller: atribute3,
+                    filled: true),
+                Text('Completa:'),
+                SizedBox(height: 5),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        Text('Comer es...'),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        shortTextField(
+                            controller: comer_es,
+                            label: '',
+                            fillColor: Colors.white,
+                            filled: true)
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text('Comer se siente...'),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        shortTextField(
+                            controller: comer_se_siente,
+                            label: '',
+                            fillColor: Colors.white,
+                            filled: true)
+                      ],
+                    )
+                  ],
+                ),
+                Text(
+                  'Para que yo me sienta cómoda al comer, necesito...',
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                longTextField(
+                    controller: comer_comoda,
                     label: '',
                     fillColor: Colors.white,
-                  ),
-                ],
-              ),
-              SizedBox(height: 5),
-              Text('¿Cuál es el rasgo que más aprecias de ti?'),
-              SizedBox(height: 10),
-              longTextField(
-                  controller: mejor_rasgo,
-                  label: '',
-                  fillColor: Colors.white,
-                  filled: true),
-              Text('Completa:'),
-              SizedBox(height: 5),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    children: [
-                      Text('Comer es...'),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      shortTextField(
-                          controller: comer_es,
-                          label: '',
-                          fillColor: Colors.white,
-                          filled: true)
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text('Comer se siente...'),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      shortTextField(
-                          controller: comer_se_siente,
-                          label: '',
-                          fillColor: Colors.white,
-                          filled: true)
-                    ],
-                  )
-                ],
-              ),
-              Text(
-                'Para que yo me sienta cómoda al comer, necesito...',
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              longTextField(
-                  controller: comer_comoda,
-                  label: '',
-                  fillColor: Colors.white,
-                  filled: true),
-              Text(
-                'Si pudieras cambiar algo de ti... ¿Qué sería?',
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              longTextField(
-                  controller: comer_comoda,
-                  label: '',
-                  fillColor: Colors.white,
-                  filled: true),
-              ElevatedButton(
-                  onPressed: _sendAtributos, child: Text('Send atributos'))
-            ],
+                    filled: true),
+                Text(
+                  'Si pudieras cambiar algo de ti... ¿Qué sería?',
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                longTextField(
+                    controller: cambiar_algo,
+                    label: '',
+                    fillColor: Colors.white,
+                    filled: true),
+                ElevatedButton(
+                    onPressed: sendDataCholo,
+                    child: Text('Mandando a lo cholo')),
+              ],
+            ),
           ),
         ),
-      )),
+      ),
     );
   }
 }

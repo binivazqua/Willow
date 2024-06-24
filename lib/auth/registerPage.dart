@@ -31,9 +31,9 @@ class _registerPageState extends State<registerPage> {
   }
 
   // SEND DATA METHOD:
-  Future addUserDetails() async {
+  Future addUserDetails(User? user) async {
     try {
-      await FirebaseFirestore.instance.collection('users').add({
+      await FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
         'first name': _name.text.trim(),
         'last name': _lastname.text.trim(),
         'nickname': _username.text.trim(),
@@ -69,7 +69,7 @@ class _registerPageState extends State<registerPage> {
         });
 
         try {
-          addUserDetails();
+          addUserDetails(newUser);
         } catch (error) {
           print('Error sending user data: $error');
         }
