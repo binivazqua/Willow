@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:bejoy/components/userData/longTextField.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -42,9 +44,13 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
       return;
     }
 
-    print('atributo 1: ${atribute1.text}');
-    print('atributo 2: ${atribute2.text}');
-    print('atributo 3: ${atribute3.text}');
+    var atributos = [
+      atribute1.text.trim(),
+      atribute2.text.trim(),
+      atribute3.text.trim(),
+    ];
+
+    print('atributos: ${atributos.toString()}');
     print('mejor rasgo: ${mejor_rasgo.text}');
     print('comer es: ${comer_es.text}');
     print('comer se siente: ${comer_se_siente.text}');
@@ -61,9 +67,7 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
           .collection('initial_diagnostic')
           .doc('general_perception')
           .set({
-        'atributo 1': atribute1.text.trim(),
-        'atributo 2': atribute2.text.trim(),
-        'atributo 3': atribute3.text.trim(),
+        'atributos': atributos,
         'rasgo mas preciado': mejor_rasgo.text.trim(),
         'comer es': comer_es.text.trim(),
         'comer se siente': comer_se_siente.text.trim(),

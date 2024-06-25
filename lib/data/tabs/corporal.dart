@@ -1,6 +1,8 @@
 import 'package:bejoy/components/userData/dropDown.dart';
 import 'package:bejoy/components/userData/longTextField.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class percepcionCorporal extends StatefulWidget {
@@ -26,6 +28,65 @@ class _percepcionCorporalState extends State<percepcionCorporal> {
   final TextEditingController cuerpo3 = new TextEditingController();
 
   final TextEditingController no_me_gusta = new TextEditingController();
+
+  @override
+  void dispose() {
+    cosa_al_espejo.dispose();
+    cuerpo1.dispose();
+    cuerpo2.dispose();
+    cuerpo3.dispose();
+
+    no_me_gusta.dispose();
+    super.dispose();
+  }
+
+  FirebaseFirestore database = FirebaseFirestore.instance;
+
+  Future _addCorporalPerception(User? currentUser) async {
+    if (currentUser == null) {
+      print('User is not logged in.');
+      return;
+    }
+
+    var gustos_corporales = [
+      cuerpo1.text.trim(),
+      cuerpo2.text.trim(),
+      cuerpo3.text.trim()
+    ];
+
+    print('Periodicidad de vista al espejo: ${periodicidad}');
+    print('Primera cosa al espejo: ${cosa_al_espejo.text.trim()}');
+    print('Cosas que me gustan de mi cuerpo: ${gustos_corporales.toString()}');
+    print('Cosa que no me gusta de mi cuerpo: ${no_me_gusta.text.trim()}');
+
+    try {
+      DocumentReference userDocRef =
+          database.collection('users').doc(currentUser.uid);
+
+      await userDocRef
+          .collection('initial_diagnostic')
+          .doc('body_perception')
+          .set({
+        'periodicidad de vista al espejo': periodicidad,
+        'primera cosa que nota al verse al espejo': cosa_al_espejo.text.trim(),
+        'cosas que me gustan de mi cuerpo': gustos_corporales.toString(),
+        'no me gusta de mi cuerpo': no_me_gusta.text.trim(),
+      });
+
+      print('User data sent successfully!');
+    } catch (error) {
+      print('Hubo un error al mandar la información: $error.');
+    }
+  }
+
+  Future<void> sendData() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      await _addCorporalPerception(user);
+    } catch (error) {
+      print('Encountered an error sending data: $error.');
+    }
+  }
 
   String periodicidad = '';
   @override
@@ -99,7 +160,8 @@ class _percepcionCorporalState extends State<percepcionCorporal> {
                     controller: no_me_gusta,
                     label: '',
                     fillColor: Colors.white,
-                    filled: true)
+                    filled: true),
+                ElevatedButton(onPressed: sendData, child: Text('Send data'))
               ],
             ),
           ),
