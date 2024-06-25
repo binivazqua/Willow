@@ -37,7 +37,7 @@ class _miedoSintomasState extends State<miedoSintomas> {
 
   FirebaseFirestore database = FirebaseFirestore.instance;
 
-  Future<void> saveData(User? currentUser) async {
+  Future<void> _saveData(User? currentUser) async {
     if (currentUser == null) {
       print('User not found. Please login.');
       return;
@@ -60,9 +60,36 @@ class _miedoSintomasState extends State<miedoSintomas> {
         'Alimento del cual no se siente merecedora: ${_alimentomiedo.text.trim()}');
     print('Razón: ${_porquemiedoalimento.text.trim()}');
 
-    try {} catch (error) {
-      print('Error saving data: $error');
-      return;
+    try {
+      DocumentReference userDocRef =
+          database.collection('users').doc(currentUser.uid);
+
+      // Add data to the 'general perception' subcollection
+      await userDocRef
+          .collection('initial_diagnostic')
+          .doc('fear_description')
+          .set({
+        'Primeros tres conceptos asociados con comer;': conceptos,
+        'Se siente no merecedora de algún alimento:': _sionomerecedora,
+        'Alimento del cual se siente no merecedora:': _nomerecedora.text.trim(),
+        'Razón:': _porquenomerecedora.text.trim(),
+        'Le tiene miedo a algun alimento:': _sionomiedo,
+        'Alimento del cual no se siente merecedora:':
+            _alimentomiedo.text.trim(),
+        'Razón': _porquemiedoalimento.text.trim(),
+      });
+      print('Info sent to database.');
+    } catch (error) {
+      print('There was an error sending data: $error');
+    }
+  }
+
+  Future<void> sendData() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      await _saveData(user);
+    } catch (error) {
+      print('Encountered an error sending data: $error.');
     }
   }
 
@@ -174,7 +201,7 @@ class _miedoSintomasState extends State<miedoSintomas> {
                   ),
                 ],
               ),
-              ElevatedButton(onPressed: () {}, child: Text('Send')),
+              ElevatedButton(onPressed: sendData, child: Text('Send')),
             ],
           ),
         ),
