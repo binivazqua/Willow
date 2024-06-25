@@ -1,5 +1,7 @@
 import 'package:bejoy/components/userData/dropDown.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class miedoSintomas extends StatefulWidget {
@@ -10,19 +12,63 @@ class miedoSintomas extends StatefulWidget {
 }
 
 class _miedoSintomasState extends State<miedoSintomas> {
-  final TextEditingController _comer1 = TextEditingController();
-  final TextEditingController _comer2 = TextEditingController();
-  final TextEditingController _comer3 = TextEditingController();
+  TextEditingController _comer1 = TextEditingController();
+  TextEditingController _comer2 = TextEditingController();
+  TextEditingController _comer3 = TextEditingController();
 
-  final TextEditingController _nomerecedora = TextEditingController();
-  final TextEditingController _porquenomerecedora = TextEditingController();
+  TextEditingController _nomerecedora = TextEditingController();
+  TextEditingController _porquenomerecedora = TextEditingController();
 
-  final TextEditingController _alimentomiedo = TextEditingController();
-  final TextEditingController _porquemiedoalimento = TextEditingController();
+  TextEditingController _alimentomiedo = TextEditingController();
+  TextEditingController _porquemiedoalimento = TextEditingController();
+
+  @override
+  void dispose() {
+    _comer1.dispose();
+    _comer2.dispose();
+    _comer3.dispose();
+    _nomerecedora.dispose();
+    _porquenomerecedora.dispose();
+    _alimentomiedo.dispose();
+    _porquemiedoalimento.dispose();
+
+    super.dispose();
+  }
+
+  FirebaseFirestore database = FirebaseFirestore.instance;
+
+  Future<void> saveData(User? currentUser) async {
+    if (currentUser == null) {
+      print('User not found. Please login.');
+      return;
+    }
+
+    var conceptos = [
+      _comer1.text.trim(),
+      _comer2.text.trim(),
+      _comer3.text.trim()
+    ];
+
+    print('Primeros tres conceptos asociados con comer:$conceptos');
+    print('Se siente no merecedora de algún alimento: $_sionomerecedora');
+    print(
+        'Alimento del cual se siente no merecedora: ${_nomerecedora.text.trim()}');
+    print(
+        'Razón de la cual se siente no merecedora: ${_porquenomerecedora.text.trim()}');
+    print('Le tiene miedo a algun alimento: $_sionomiedo');
+    print(
+        'Alimento del cual no se siente merecedora: ${_alimentomiedo.text.trim()}');
+    print('Razón: ${_porquemiedoalimento.text.trim()}');
+
+    try {} catch (error) {
+      print('Error saving data: $error');
+      return;
+    }
+  }
 
   final List<String> merecedora = ['Sí', 'No', ''];
-  String _default1 = '';
-  String _default2 = '';
+  String _sionomerecedora = '';
+  String _sionomiedo = '';
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +104,12 @@ class _miedoSintomasState extends State<miedoSintomas> {
               ),
               dropdownMenu(
                 helper: '',
-                defaultValue: _default1,
+                defaultValue: _sionomerecedora,
                 list: merecedora,
                 theme: 'Sí o No',
                 width: 310,
                 textColor: Colors.purple,
-                onChanged: (p0) => {_default1 = p0!},
+                onChanged: (p0) => {_sionomerecedora = p0!},
               ),
               SizedBox(
                 height: 15,
@@ -98,12 +144,12 @@ class _miedoSintomasState extends State<miedoSintomas> {
               SizedBox(height: 10),
               dropdownMenu(
                 helper: '',
-                defaultValue: _default2,
+                defaultValue: _sionomiedo,
                 textColor: Colors.purple,
                 list: merecedora,
                 theme: 'Sí o No',
                 width: 310,
-                onChanged: (p0) => {_default2 = p0!},
+                onChanged: (p0) => {_sionomiedo = p0!},
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -123,11 +169,12 @@ class _miedoSintomasState extends State<miedoSintomas> {
                       shortTextField(
                           controller: _porquemiedoalimento,
                           label: '',
-                          filled: true)
+                          filled: true),
                     ],
-                  )
+                  ),
                 ],
               ),
+              ElevatedButton(onPressed: () {}, child: Text('Send')),
             ],
           ),
         ),
