@@ -21,6 +21,14 @@ List<String> _estadoNutricional = [
   'Desnutrición'
 ];
 
+List<String> _duraciontratamiento = [
+  '1-2 meses',
+  '3-6 meses',
+  '6 meses - 1 año',
+  '2 años',
+  '3 años o más'
+];
+
 class _profesionalPsicFisState extends State<profesionalPsicFis> {
   TextEditingController _diagnostico = new TextEditingController();
 
@@ -54,6 +62,8 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
   TextEditingController _pesoactual = new TextEditingController();
 
   String currentOption = _estadoNutricional[0];
+  String currentOption1 = _duraciontratamiento[0];
+  String currentOption2 = _duraciontratamiento[0];
 
   bool? _anemia = false;
   bool? _amenorrea = false;
@@ -62,14 +72,6 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
   bool? _hipotension = false;
 
   TextEditingController _medicacion = new TextEditingController();
-
-  List<String> _duraciontratamiento = [
-    '1-2 meses',
-    '3-6 meses',
-    '6 meses - 1 año',
-    '2 años',
-    '3 años o más'
-  ];
 
   FirebaseFirestore database = FirebaseFirestore.instance;
 
@@ -89,7 +91,94 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
       return;
     }
 
+    Map<String, bool?> diagnosticos_adicionales = {
+      'TOC': _adicionalTOC,
+      'Ansiedad generalizada': _adicionalAG,
+      'Ansiedad social': _adicionalAS,
+      'Depresión': _adicionalDEP,
+    };
+
+    Map<String, bool?> diagnosticosfisicos_adicionales = {
+      'Anemia': _anemia,
+      'Amenorrea': _amenorrea,
+      'Descalcificacion': _descalcificacion,
+      'Bradicardia': _bradicardia,
+      'Hipotensión': _hipotension,
+    };
+
+    Map<String, bool?> tipos_de_tratamiento = {
+      'Realimentacion': _realimentacion,
+      'Terapia CC': _terapiacogcond,
+      'Terapia CA': _terapiacogoanalitica,
+      'Terapia Gestal': _terapiagestal,
+      'Terapia familiar': _terapiafamiliar,
+      'Intervencion hospitalaria': _interhospitalaria,
+      'Internamiento': _internamiento,
+    };
+
+    List<String> diagnosticos = [];
+    diagnosticos_adicionales.forEach(
+      (key, value) {
+        if (value == true) {
+          diagnosticos_adicionales.remove(value);
+          diagnosticos.add(key);
+        }
+      },
+    );
+
+    List<String> tratamientos = [];
+    tipos_de_tratamiento.forEach((key, value) {
+      if (value == true) {
+        tratamientos.add(key);
+      }
+    });
+
+    List<String> otros_diagnosticos_clinicos = [];
+    diagnosticosfisicos_adicionales.forEach(
+      (key, value) {
+        if (value == true) {
+          diagnosticos_adicionales.remove(value);
+          diagnosticos.add(key);
+        }
+      },
+    );
+
+    Map<String, double> catalizadores = {
+      'familiar': _familiares,
+      'social': _sociales,
+      'trauma': _trauma,
+      'culturas de dieta': _culturasdedieta,
+    };
+
+    Map<String, double> tecnicas = {
+      'mindullness': _mindfullness,
+      'respiraciones': _respiraciones,
+      'terapia cognitivo conductual': _terapiaCOG,
+      'terapia gestal': _terapiaGESTAL,
+    };
+
     print('Diagnóstico: ${_diagnostico.text.trim()}');
+    print('Diagnosticos adicionales: $diagnosticos');
+    print('Tratamientos recibidos: $tratamientos');
+    print('Nivel de miedo: $_miedocomida');
+    print('Nivel de ansiedad: $_hiperactividad');
+    print('Principales catalizadores: $catalizadores');
+    print('Razones de compatibilidad: ${_razonesprospectoNR.text.toString()}');
+    print('Peso actual ${_pesoactual.text.toString()}');
+    print('Estado nutricional: $currentOption');
+    print('Diagnósticos clínicos adicionales: ${otros_diagnosticos_clinicos}');
+    print('Recibiendo medicación: ${_medicacion.text.toString()}');
+    print('Tiempo en rehabilitacion psicológica: $currentOption1');
+    print('Tiempo en rehabilitación alimentaria: $currentOption2');
+  }
+
+  Future<void> _sendData() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      await saveData(user);
+    } catch (error) {
+      print('Encountered an error sending data: $error.');
+    }
   }
 
   @override
@@ -527,10 +616,10 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                 title: Text(_duraciontratamiento[1]),
                 leading: Radio(
                     value: _duraciontratamiento[1],
-                    groupValue: currentOption,
+                    groupValue: currentOption1,
                     onChanged: (value) {
                       setState(() {
-                        currentOption = value.toString();
+                        currentOption1 = value.toString();
                       });
                     }),
               ),
@@ -538,10 +627,10 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                 title: Text(_duraciontratamiento[2]),
                 leading: Radio(
                     value: _duraciontratamiento[2],
-                    groupValue: currentOption,
+                    groupValue: currentOption1,
                     onChanged: (value) {
                       setState(() {
-                        currentOption = value.toString();
+                        currentOption1 = value.toString();
                       });
                     }),
               ),
@@ -549,10 +638,10 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                 title: Text(_duraciontratamiento[3]),
                 leading: Radio(
                     value: _duraciontratamiento[3],
-                    groupValue: currentOption,
+                    groupValue: currentOption1,
                     onChanged: (value) {
                       setState(() {
-                        currentOption = value.toString();
+                        currentOption1 = value.toString();
                       });
                     }),
               ),
@@ -560,10 +649,10 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                 title: Text(_duraciontratamiento[4]),
                 leading: Radio(
                     value: _duraciontratamiento[4],
-                    groupValue: currentOption,
+                    groupValue: currentOption1,
                     onChanged: (value) {
                       setState(() {
-                        currentOption = value.toString();
+                        currentOption1 = value.toString();
                       });
                     }),
               ),
@@ -576,10 +665,10 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                 title: Text(_duraciontratamiento[1]),
                 leading: Radio(
                     value: _duraciontratamiento[1],
-                    groupValue: currentOption,
+                    groupValue: currentOption2,
                     onChanged: (value) {
                       setState(() {
-                        currentOption = value.toString();
+                        currentOption2 = value.toString();
                       });
                     }),
               ),
@@ -587,10 +676,10 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                 title: Text(_duraciontratamiento[2]),
                 leading: Radio(
                     value: _duraciontratamiento[2],
-                    groupValue: currentOption,
+                    groupValue: currentOption2,
                     onChanged: (value) {
                       setState(() {
-                        currentOption = value.toString();
+                        currentOption2 = value.toString();
                       });
                     }),
               ),
@@ -598,10 +687,10 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                 title: Text(_duraciontratamiento[3]),
                 leading: Radio(
                     value: _duraciontratamiento[3],
-                    groupValue: currentOption,
+                    groupValue: currentOption2,
                     onChanged: (value) {
                       setState(() {
-                        currentOption = value.toString();
+                        currentOption2 = value.toString();
                       });
                     }),
               ),
@@ -609,13 +698,17 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                 title: Text(_duraciontratamiento[4]),
                 leading: Radio(
                     value: _duraciontratamiento[4],
-                    groupValue: currentOption,
+                    groupValue: currentOption2,
                     onChanged: (value) {
                       setState(() {
-                        currentOption = value.toString();
+                        currentOption2 = value.toString();
                       });
                     }),
               ),
+              SizedBox(
+                height: 15,
+              ),
+              ElevatedButton(onPressed: _sendData, child: Text('Send')),
             ],
           ),
         ),
