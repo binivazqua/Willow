@@ -138,7 +138,7 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
       (key, value) {
         if (value == true) {
           diagnosticos_adicionales.remove(value);
-          diagnosticos.add(key);
+          otros_diagnosticos_clinicos.add(key);
         }
       },
     );
@@ -163,13 +163,43 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
     print('Nivel de miedo: $_miedocomida');
     print('Nivel de ansiedad: $_hiperactividad');
     print('Principales catalizadores: $catalizadores');
-    print('Razones de compatibilidad: ${_razonesprospectoNR.text.toString()}');
-    print('Peso actual ${_pesoactual.text.toString()}');
+    print('Técnicas útiles: $tecnicas');
+    print('Razones de compatibilidad: ${_razonesprospectoNR.text.trim()}');
+    print('Peso actual ${_pesoactual.text.trim()}');
     print('Estado nutricional: $currentOption');
     print('Diagnósticos clínicos adicionales: ${otros_diagnosticos_clinicos}');
-    print('Recibiendo medicación: ${_medicacion.text.toString()}');
+    print('Recibiendo medicación: ${_medicacion.text.trim()}');
     print('Tiempo en rehabilitacion psicológica: $currentOption1');
     print('Tiempo en rehabilitación alimentaria: $currentOption2');
+
+    try {
+      DocumentReference userDocRef =
+          database.collection('users').doc(currentUser.uid);
+
+      await userDocRef
+          .collection('initial_diagnostic')
+          .doc('professional_profile')
+          .set({
+        'Diagnóstico:': _diagnostico.text.trim(),
+        'Diagnosticos adicionales:': diagnosticos,
+        'Tratamientos recibidos:': tratamientos,
+        'Nivel de miedo:': _miedocomida,
+        'Nivel de ansiedad:': _hiperactividad,
+        'Principales catalizadores:': catalizadores,
+        'Técnicas útiles:': tecnicas,
+        'Razones de compatibilidad:': _razonesprospectoNR.text.trim(),
+        'Peso actual': _pesoactual.text.trim(),
+        'Estado nutricional:': currentOption,
+        'Diagnósticos clínicos adicionales:': otros_diagnosticos_clinicos,
+        'Recibiendo medicación:': _medicacion.text.trim(),
+        'Tiempo en rehabilitacion psicológica:': currentOption1,
+        'Tiempo en rehabilitación alimentaria:': currentOption2,
+      });
+      print('Info sent to database.');
+    } catch (error) {
+      print('There was an error sending data: $error');
+      return;
+    }
   }
 
   Future<void> _sendData() async {
