@@ -1,6 +1,8 @@
 import 'package:bejoy/components/userData/checkbox.dart';
 import 'package:bejoy/components/userData/dropDown.dart';
 import 'package:bejoy/components/userData/longTextField.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -12,11 +14,11 @@ class perfilABA extends StatefulWidget {
 }
 
 class _perfilABAState extends State<perfilABA> {
-  String _default1 = '';
-  String _default2 = '';
-  String _default3 = '';
-  String _default4 = '';
-  String _default5 = '';
+  String _identificarhambre = '';
+  String _comeracompanada = '';
+  String _necesidaddemovimiento = '';
+  String _toleranciaaldolor = '';
+  String _necesidaddeplanear = '';
 
   final List<String> escala_de_identidad = [
     'Nunca / Totalmente en desacuerdo',
@@ -57,12 +59,114 @@ class _perfilABAState extends State<perfilABA> {
   bool? _compactividad = false;
   bool? _compaislamiento = false;
 
-  final TextEditingController _sentirdespuescomp = new TextEditingController();
-  final TextEditingController _regla1desafiar = new TextEditingController();
-  final TextEditingController _regla2desafiar = new TextEditingController();
-  final TextEditingController _regla3desafiar = new TextEditingController();
+  TextEditingController _sentirdespuescomp = new TextEditingController();
+  TextEditingController _regla1desafiar = new TextEditingController();
+  TextEditingController _regla2desafiar = new TextEditingController();
+  TextEditingController _regla3desafiar = new TextEditingController();
 
-  final OverlayPortalController popupController = new OverlayPortalController();
+  OverlayPortalController popupController = new OverlayPortalController();
+
+  FirebaseFirestore database = FirebaseFirestore.instance;
+
+  Future<void> _saveData(User? currentUser) async {
+    if (currentUser == null) {
+      print('User not found. Please login.');
+      return;
+    }
+
+    Map<String, bool?> sintomas = {
+      'necesidad de ejercicio': _sintoma1Checked,
+      'taquicardia': _sintoma2Checked,
+      'mareos': _sintoma3Checked,
+      'dolor abdominal': _sintoma5Checked,
+      'sudor en palmas': _sintoma6Checked,
+      'hormigueo': _sintoma7Checked,
+    };
+
+    Map<String, bool?> tipos_de_pensamiento = {
+      'conteo de calorías': _conteodecalorias,
+      'conteo de macros': _conteomacros,
+      'conteo de porciones': _porciones,
+      'sabor': _sabor,
+      'textura': _textura,
+      'comidas previas': _comidasprevias,
+      'comidas posteriores': _comidasposteriores,
+    };
+
+    Map<String, bool?> actitudes_compensatorias = {
+      'movimiento corporal': _compmovcorporal,
+      'ejercicio exhaustivo': _compejercicio,
+      'saltar comidas': _compsaltarcomidas,
+      'restringir alimentos': _comprestriccion,
+      'privacion': _compactividad,
+      'aislamiento': _compaislamiento,
+    };
+
+    Map<String, double> frecuencias_de_sintomas = {
+      'taquicardia': _frectaquicardia,
+      'mareos': _frecmareo,
+      'dolor abdominal': _frecdolorabdominal,
+      'necesidad de ir al baño': _frecbano,
+      'necesidad de movimiento': _frecmovcorporal,
+    };
+
+    var reglas_a_desafiar = [
+      _regla1desafiar.text.trim(),
+      _regla2desafiar.text.trim(),
+      _regla3desafiar.text.trim()
+    ];
+
+    print('Identifica cuando tiene hambre: $_identificarhambre');
+    print('Necesidad de comer en distinta proporción: $_comeracompanada');
+    print('Necesidad de movimiento: $_necesidaddemovimiento');
+    print('Alta tolerancia al dolor: $_toleranciaaldolor');
+    print('Necesidad de planear comidas: $_necesidaddeplanear');
+    print('Síntomas: $_necesidaddeplanear');
+    print('Síntomas previos: $sintomas');
+    print('Tipos de pensamiento: $tipos_de_pensamiento');
+    print('Frecuencia de taquicardia: $_frectaquicardia');
+    print('Frecuencia de mareos: $_frecmareo');
+    print('Frecuencia de dolor abdominal: $_frecdolorabdominal');
+    print('Frecuencia de necesidad de ir al baño: $_frecbano');
+    print('Frecuencia de necesidad de movimiento: $_frecmovcorporal');
+    print('Actitudes compensatorias: $actitudes_compensatorias');
+    print('Reglas a desafiar: ${reglas_a_desafiar}');
+
+    try {
+      DocumentReference userDocRef =
+          database.collection('users').doc(currentUser.uid);
+
+      await userDocRef
+          .collection('initial_diagnostic')
+          .doc('anorexia_profile')
+          .set({
+        'Identifica cuando tiene hambre:': _identificarhambre,
+        'Necesidad de comer en distinta proporción:': _comeracompanada,
+        'Necesidad de movimiento:': _necesidaddemovimiento,
+        'Alta tolerancia al dolor:': _toleranciaaldolor,
+        'Necesidad de planear comidas:': _necesidaddeplanear,
+        'Síntomas previos a comidas:': sintomas,
+        'Pensamientos al comer:': tipos_de_pensamiento,
+        'Frecuencia de síntomas:': frecuencias_de_sintomas,
+        'Actitudes compensatorias': actitudes_compensatorias,
+        'Reglas a desafiar:': reglas_a_desafiar,
+      });
+      print('Info sent to database.');
+    } catch (error) {
+      print('There was an error sending data: $error');
+      return;
+    }
+  }
+
+  Future<void> _sendData() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      await _saveData(user);
+    } catch (error) {
+      print('Encountered an error sending data: $error.');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +175,6 @@ class _perfilABAState extends State<perfilABA> {
             child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Responde respecto al nivel en el que te sientas identificada.',
@@ -86,12 +189,12 @@ class _perfilABAState extends State<perfilABA> {
               ),
               dropdownMenu(
                 helper: '',
-                defaultValue: _default1,
+                defaultValue: _identificarhambre,
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
                 textColor: Colors.purple,
-                onChanged: (p0) => {_default1 = p0!},
+                onChanged: (p0) => {_identificarhambre = p0!},
               ),
               Text(
                   'Cuando como acompañada, siento la necesidad de comer en mayor o menor proporción a mi acompañante.'),
@@ -100,12 +203,12 @@ class _perfilABAState extends State<perfilABA> {
               ),
               dropdownMenu(
                 helper: '',
-                defaultValue: _default2,
+                defaultValue: _comeracompanada,
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
                 textColor: Colors.purple,
-                onChanged: (p0) => {_default2 = p0!},
+                onChanged: (p0) => {_comeracompanada = p0!},
               ),
               Text(
                   'Constantemente siento la necesidad de moverme. Aun cuando estoy cansada.'),
@@ -114,12 +217,12 @@ class _perfilABAState extends State<perfilABA> {
               ),
               dropdownMenu(
                 helper: '',
-                defaultValue: _default3,
+                defaultValue: _necesidaddemovimiento,
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
                 textColor: Colors.purple,
-                onChanged: (p0) => {_default3 = p0!},
+                onChanged: (p0) => {_necesidaddemovimiento = p0!},
               ),
               Text(
                   'Creo o me han dicho que tengo una alta tolerancia al dolor.'),
@@ -128,12 +231,12 @@ class _perfilABAState extends State<perfilABA> {
               ),
               dropdownMenu(
                 helper: '',
-                defaultValue: _default4,
+                defaultValue: _toleranciaaldolor,
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
                 textColor: Colors.purple,
-                onChanged: (p0) => {_default4 = p0!},
+                onChanged: (p0) => {_toleranciaaldolor = p0!},
               ),
               Text(
                   'Siento la necesidad de planear lo que comeré con anticipación.'),
@@ -142,12 +245,12 @@ class _perfilABAState extends State<perfilABA> {
               ),
               dropdownMenu(
                 helper: '',
-                defaultValue: _default5,
+                defaultValue: _necesidaddeplanear,
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
                 textColor: Colors.purple,
-                onChanged: (p0) => {_default5 = p0!},
+                onChanged: (p0) => {_necesidaddeplanear = p0!},
               ),
               SizedBox(
                 height: 15,
@@ -179,14 +282,6 @@ class _perfilABAState extends State<perfilABA> {
                   onChanged: (bool? newValue) {
                     setState(() {
                       _sintoma3Checked = newValue;
-                    });
-                  }),
-              myCheckbox(
-                  label: 'Necesidad de realizar ejercicio o actividad física',
-                  isChecked: _sintoma4Checked,
-                  onChanged: (bool? newValue) {
-                    setState(() {
-                      _sintoma4Checked = newValue;
                     });
                   }),
               myCheckbox(
@@ -279,6 +374,10 @@ class _perfilABAState extends State<perfilABA> {
                       _comidasposteriores = newValue;
                     });
                   }),
+              SizedBox(
+                height: 15,
+              ),
+              Text('Califica segun el nivel de frecuencia: '),
               SizedBox(
                 height: 15,
               ),
@@ -462,6 +561,7 @@ class _perfilABAState extends State<perfilABA> {
                   label: 'regla 3',
                   fillColor: Colors.white,
                   filled: true),
+              ElevatedButton(onPressed: _sendData, child: Text('Send'))
             ],
           ),
         )),

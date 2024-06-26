@@ -2,6 +2,8 @@ import 'package:bejoy/components/userData/checkbox.dart';
 import 'package:bejoy/components/userData/longTextField.dart';
 import 'package:bejoy/components/userData/rating.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -20,7 +22,7 @@ List<String> _estadoNutricional = [
 ];
 
 class _profesionalPsicFisState extends State<profesionalPsicFis> {
-  final TextEditingController _diagnostico = new TextEditingController();
+  TextEditingController _diagnostico = new TextEditingController();
 
   bool? _adicionalTOC = false;
   bool? _adicionalAG = false;
@@ -48,8 +50,8 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
   late double _terapiaCOG;
   late double _terapiaGESTAL;
 
-  final TextEditingController _razonesprospectoNR = new TextEditingController();
-  final TextEditingController _pesoactual = new TextEditingController();
+  TextEditingController _razonesprospectoNR = new TextEditingController();
+  TextEditingController _pesoactual = new TextEditingController();
 
   String currentOption = _estadoNutricional[0];
 
@@ -59,7 +61,7 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
   bool? _bradicardia = false;
   bool? _hipotension = false;
 
-  final TextEditingController _medicacion = new TextEditingController();
+  TextEditingController _medicacion = new TextEditingController();
 
   List<String> _duraciontratamiento = [
     '1-2 meses',
@@ -68,6 +70,27 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
     '2 años',
     '3 años o más'
   ];
+
+  FirebaseFirestore database = FirebaseFirestore.instance;
+
+  @override
+  void dispose() {
+    _diagnostico.dispose();
+    _razonesprospectoNR.dispose();
+    _pesoactual.dispose();
+    _medicacion.dispose();
+
+    super.dispose();
+  }
+
+  Future<void> saveData(User? currentUser) async {
+    if (currentUser == null) {
+      print('User not found. Please log in.');
+      return;
+    }
+
+    print('Diagnóstico: ${_diagnostico.text.trim()}');
+  }
 
   @override
   Widget build(BuildContext context) {
