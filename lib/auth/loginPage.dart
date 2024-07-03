@@ -1,6 +1,7 @@
 import 'package:bejoy/auth/registerPage.dart';
 import 'package:bejoy/components/logoTile.dart';
 import 'package:bejoy/components/textField.dart';
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -44,8 +45,8 @@ class _loginPageeState extends State<loginPagee> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Bejoy',
-                  style: TextStyle(fontFamily: 'Kosugi', fontSize: 40),
+                  'Willow',
+                  style: TextStyle(fontFamily: 'Galyon', fontSize: 40),
                 ),
 
                 SizedBox(
@@ -55,12 +56,12 @@ class _loginPageeState extends State<loginPagee> {
                 const Text('Hello again!',
                     style: TextStyle(
                       color: Colors.black,
-                      fontFamily: 'Urbanist',
+                      fontFamily: 'Pro',
                     )),
                 const Text('Login to Continue',
                     style: TextStyle(
                       color: Colors.black,
-                      fontFamily: 'Urbanist',
+                      fontFamily: 'Pro',
                     )),
                 textField(
                   hintDesiredText: 'Email',
@@ -85,7 +86,7 @@ class _loginPageeState extends State<loginPagee> {
                       color: Colors.black,
                       fontSize: 12,
                       fontStyle: FontStyle.italic,
-                      fontFamily: 'Urbanist',
+                      fontFamily: 'Pro',
                     ),
                   ),
                 ),
@@ -96,7 +97,7 @@ class _loginPageeState extends State<loginPagee> {
                   onPressed: signInUser,
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.resolveWith(
-                          (states) => Colors.amber)),
+                          (states) => turquoise)),
                   child: const Text(
                     'Go!',
                     style: TextStyle(
@@ -106,11 +107,11 @@ class _loginPageeState extends State<loginPagee> {
                 ),
 
                 const Text(
-                  'or ontinue with',
+                  'Or continue with',
                   style: TextStyle(
                     fontSize: 12,
                     height: 3,
-                    fontFamily: 'Urbanist',
+                    fontFamily: 'Galyon',
                   ),
                 ),
               ],

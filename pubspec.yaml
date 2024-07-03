@@ -21,3 +21,15 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+      - family: Galyon
+        fonts:
+          - asset: lib/design/fonts/Galyon-Book.otf
+          - asset: lib/design/fonts/Galyon-Bold.otf
+            
+      - family: Pro
+        fonts:
+          - asset: lib/design/fonts/PrimeformProDemo-Regular.otf
+            weight: 700
+          

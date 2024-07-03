@@ -1,4 +1,4 @@
-import 'package:bejoy/data/userData.dart';
+import 'package:bejoy/data/tabs/tabs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -29,8 +29,10 @@ class _loggedPageState extends State<loggedPage> {
                   }),
               MaterialButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => userData()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => userDiagnosticTest()));
                 },
                 color: Colors.purple,
                 child: Text('Go to data'),

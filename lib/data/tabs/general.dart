@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:bejoy/components/userData/longTextField.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -162,7 +163,6 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
                         shortTextField(
                             controller: comer_se_siente,
                             label: '',
-                            fillColor: Colors.white,
                             filled: true)
                       ],
                     )

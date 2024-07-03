@@ -1,3 +1,4 @@
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:flutter/material.dart';
 
 class shortTextField extends StatelessWidget {
@@ -19,16 +20,29 @@ class shortTextField extends StatelessWidget {
         label: Text('...'),
         filled: true,
         fillColor: Colors.white,
+        focusColor: deepTurquoise,
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderSide: BorderSide(
+              color: deepTurquoise,
+              width: 2,
+            )),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderSide: BorderSide(
+              color: lightTurquoise,
+              width: 1,
+            )),
         helper: Text(label),
       );
     } else {
       return InputDecoration(
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderSide: BorderSide(
+              color: lightTurquoise,
+              width: 1,
+            )),
         helper: Text('helper'),
       );
     }
@@ -41,6 +55,7 @@ class shortTextField extends StatelessWidget {
       child: TextField(
         decoration: _textFieldStyle(),
         controller: controller,
+        cursorColor: deepTurquoise,
       ),
     );
   }

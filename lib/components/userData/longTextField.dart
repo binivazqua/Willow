@@ -1,3 +1,4 @@
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:flutter/material.dart';
 
 class longTextField extends StatelessWidget {
@@ -16,6 +17,12 @@ class longTextField extends StatelessWidget {
   InputDecoration _textFieldStyle() {
     if (filled == true) {
       return InputDecoration(
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderSide: BorderSide(
+              color: deepTurquoise,
+              width: 2,
+            )),
         label: Text('...'),
         filled: true,
         fillColor: Colors.white,

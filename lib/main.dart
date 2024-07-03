@@ -1,4 +1,5 @@
 import 'package:bejoy/auth/authVerif.dart';
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:flutter/material.dart';
 
 /* ++++++++++++++++++++++++ FIREBASE ++++++++++++++++++++++++++ */
@@ -18,6 +19,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        theme: ThemeData(fontFamily: 'Pro'),
         home: FutureBuilder(
             future: _firebase,
             builder: (context, snapshot) {
