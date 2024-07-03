@@ -44,10 +44,9 @@ class _loginPageeState extends State<loginPagee> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  'Willow',
-                  style: TextStyle(fontFamily: 'Galyon', fontSize: 40),
-                ),
+                Image(
+                    width: 120,
+                    image: AssetImage('lib/design/logos/willow_color_TXT.png')),
 
                 SizedBox(
                   height: 20,

@@ -32,4 +32,6 @@ flutter:
         fonts:
           - asset: lib/design/fonts/PrimeformProDemo-Regular.otf
             weight: 700
+  assets:
+    - lib/design/logos/willow_color_TXT.png
           
