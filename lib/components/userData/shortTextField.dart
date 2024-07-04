@@ -33,7 +33,10 @@ class shortTextField extends StatelessWidget {
               color: lightTurquoise,
               width: 1,
             )),
-        helper: Text(label),
+        helper: Text(
+          label,
+          style: TextStyle(color: deepTurquoise),
+        ),
       );
     } else {
       return InputDecoration(

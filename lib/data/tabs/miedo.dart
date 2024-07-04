@@ -1,5 +1,7 @@
 import 'package:bejoy/components/userData/dropDown.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
+import 'package:bejoy/components/userData/turquoiseButton.dart';
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -103,7 +105,7 @@ class _miedoSintomasState extends State<miedoSintomas> {
         body: Center(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20),
           child: Column(
             children: [
               Text('Enlista los primeros 3 conceptos que asocies con "comer":'),
@@ -135,7 +137,7 @@ class _miedoSintomasState extends State<miedoSintomas> {
                 list: merecedora,
                 theme: 'Sí o No',
                 width: 310,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 onChanged: (p0) => {_sionomerecedora = p0!},
               ),
               SizedBox(
@@ -172,7 +174,7 @@ class _miedoSintomasState extends State<miedoSintomas> {
               dropdownMenu(
                 helper: '',
                 defaultValue: _sionomiedo,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 list: merecedora,
                 theme: 'Sí o No',
                 width: 310,
@@ -201,7 +203,7 @@ class _miedoSintomasState extends State<miedoSintomas> {
                   ),
                 ],
               ),
-              ElevatedButton(onPressed: sendData, child: Text('Send')),
+              Turquoisebutton(txt: 'Save')
             ],
           ),
         ),

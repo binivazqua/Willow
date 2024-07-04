@@ -29,7 +29,10 @@ class longTextField extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        helper: Text(label),
+        helper: Text(
+          label,
+          style: TextStyle(color: deepTurquoise),
+        ),
       );
     } else {
       return InputDecoration(

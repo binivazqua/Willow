@@ -1,3 +1,4 @@
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:flutter/material.dart';
 
 class dropdownMenu extends StatefulWidget {
@@ -32,12 +33,22 @@ class _dropdownMenuState extends State<dropdownMenu> {
       width: widget.width,
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderSide: BorderSide(
+                color: deepTurquoise,
+                width: 2,
+              )),
           helper: Text(widget.helper),
           labelText: widget.theme,
           labelStyle: TextStyle(color: widget.textColor),
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: lightTurquoise,
+              width: 1,
+            ),
             borderRadius: BorderRadius.circular(10),
           ),
         ),

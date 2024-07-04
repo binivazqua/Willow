@@ -1,3 +1,4 @@
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:flutter/material.dart';
 
 class myCheckbox extends StatefulWidget {
@@ -18,6 +19,7 @@ class _myCheckboxState extends State<myCheckbox> {
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
+      activeColor: deepTurquoise,
       value: widget.isChecked,
       onChanged: widget.onChanged,
       checkColor: Colors.white,

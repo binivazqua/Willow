@@ -34,4 +34,5 @@ flutter:
             weight: 700
   assets:
     - lib/design/logos/willow_color_TXT.png
+    - lib/design/logos/kanji.png
           

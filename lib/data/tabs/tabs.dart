@@ -23,7 +23,10 @@ class _userDiagnosticTestState extends State<userDiagnosticTest> {
         length: 6,
         child: Scaffold(
           appBar: AppBar(
-              title: Text('Initial Diagnostic'),
+              title: Image(
+                width: 30,
+                image: AssetImage('lib/design/logos/kanji.png'),
+              ),
               backgroundColor: lightTurquoise,
               bottom: TabBar(
                 dividerHeight: 3,

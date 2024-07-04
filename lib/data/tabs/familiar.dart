@@ -1,6 +1,8 @@
 import 'package:bejoy/components/userData/dropDown.dart';
 import 'package:bejoy/components/userData/longTextField.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
+import 'package:bejoy/components/userData/turquoiseButton.dart';
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -102,7 +104,7 @@ class _percepcionFamiliarState extends State<percepcionFamiliar> {
       body: Center(
           child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 45.0),
+          padding: const EdgeInsets.symmetric(horizontal: 45.0, vertical: 20),
           child: Column(
             children: [
               Text(
@@ -122,7 +124,7 @@ class _percepcionFamiliarState extends State<percepcionFamiliar> {
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 onChanged: (p0) => {_apoyofamiliar = p0!},
               ),
               Text(
@@ -136,7 +138,7 @@ class _percepcionFamiliarState extends State<percepcionFamiliar> {
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 onChanged: (p0) => {_juiciofamiliar = p0!},
               ),
               Text('Me siento incomprendida por algún miembro de mi familia.'),
@@ -149,7 +151,7 @@ class _percepcionFamiliarState extends State<percepcionFamiliar> {
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 onChanged: (p0) => {_incomprensionfamiliar = p0!},
               ),
               Text('Me siento cómoda hablando sobre mi TCA con mi familia.'),
@@ -162,7 +164,7 @@ class _percepcionFamiliarState extends State<percepcionFamiliar> {
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 onChanged: (p0) => {_comodidadhablando = p0!},
               ),
               Text(
@@ -176,7 +178,7 @@ class _percepcionFamiliarState extends State<percepcionFamiliar> {
                 list: fuentes_de_apoyo,
                 theme: 'Apoyo',
                 width: 310,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 onChanged: (p0) => {_apoyoprincipal = p0!},
               ),
               Text(
@@ -204,7 +206,7 @@ class _percepcionFamiliarState extends State<percepcionFamiliar> {
               SizedBox(
                 height: 15,
               ),
-              ElevatedButton(onPressed: sendData, child: Text('Send')),
+              Turquoisebutton(txt: 'Save')
             ],
           ),
         ),

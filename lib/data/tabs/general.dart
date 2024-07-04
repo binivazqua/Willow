@@ -110,7 +110,7 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
                     shortTextField(
                       filled: true,
                       controller: atribute1,
-                      label: 'hh',
+                      label: '',
                       fillColor: Colors.purple[100],
                     ),
                     shortTextField(
@@ -193,8 +193,14 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
                     fillColor: Colors.white,
                     filled: true),
                 ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(deepTurquoise)),
                     onPressed: sendDataCholo,
-                    child: Text('Mandando a lo cholo')),
+                    child: Text(
+                      'Save',
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    )),
               ],
             ),
           ),

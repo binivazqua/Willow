@@ -1,6 +1,8 @@
 import 'package:bejoy/components/userData/checkbox.dart';
 import 'package:bejoy/components/userData/dropDown.dart';
 import 'package:bejoy/components/userData/longTextField.dart';
+import 'package:bejoy/components/userData/turquoiseButton.dart';
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -193,7 +195,7 @@ class _perfilABAState extends State<perfilABA> {
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 onChanged: (p0) => {_identificarhambre = p0!},
               ),
               Text(
@@ -207,7 +209,7 @@ class _perfilABAState extends State<perfilABA> {
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 onChanged: (p0) => {_comeracompanada = p0!},
               ),
               Text(
@@ -221,7 +223,7 @@ class _perfilABAState extends State<perfilABA> {
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 onChanged: (p0) => {_necesidaddemovimiento = p0!},
               ),
               Text(
@@ -235,7 +237,7 @@ class _perfilABAState extends State<perfilABA> {
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 onChanged: (p0) => {_toleranciaaldolor = p0!},
               ),
               Text(
@@ -249,7 +251,7 @@ class _perfilABAState extends State<perfilABA> {
                 list: escala_de_identidad,
                 theme: 'Escala',
                 width: 310,
-                textColor: Colors.purple,
+                textColor: deepTurquoise,
                 onChanged: (p0) => {_necesidaddeplanear = p0!},
               ),
               SizedBox(
@@ -390,7 +392,7 @@ class _perfilABAState extends State<perfilABA> {
                   minRating: 0,
                   itemBuilder: (context, _) => Icon(
                         Icons.star_rate_rounded,
-                        color: Colors.purple[100],
+                        color: green,
                       ),
                   onRatingUpdate: (rating) =>
                       {_frectaquicardia = rating, print(_frectaquicardia)}),
@@ -406,7 +408,7 @@ class _perfilABAState extends State<perfilABA> {
                   minRating: 0,
                   itemBuilder: (context, _) => Icon(
                         Icons.star_rate_rounded,
-                        color: Colors.purple[100],
+                        color: green,
                       ),
                   onRatingUpdate: (rating) =>
                       {_frecmareo = rating, print(_frecmareo)}),
@@ -422,7 +424,7 @@ class _perfilABAState extends State<perfilABA> {
                   minRating: 0,
                   itemBuilder: (context, _) => Icon(
                         Icons.star_rate_rounded,
-                        color: Colors.purple[100],
+                        color: green,
                       ),
                   onRatingUpdate: (rating) => {
                         _frecdolorabdominal = rating,
@@ -440,7 +442,7 @@ class _perfilABAState extends State<perfilABA> {
                   minRating: 0,
                   itemBuilder: (context, _) => Icon(
                         Icons.star_rate_rounded,
-                        color: Colors.purple[100],
+                        color: green,
                       ),
                   onRatingUpdate: (rating) =>
                       {_frecbano = rating, print(_frecbano)}),
@@ -456,7 +458,7 @@ class _perfilABAState extends State<perfilABA> {
                   minRating: 0,
                   itemBuilder: (context, _) => Icon(
                         Icons.star_rate_rounded,
-                        color: Colors.purple[100],
+                        color: green,
                       ),
                   onRatingUpdate: (rating) =>
                       {_frecmovcorporal = rating, print(_frecmovcorporal)}),
@@ -561,7 +563,7 @@ class _perfilABAState extends State<perfilABA> {
                   label: 'regla 3',
                   fillColor: Colors.white,
                   filled: true),
-              ElevatedButton(onPressed: _sendData, child: Text('Send'))
+              Turquoisebutton(txt: 'Save')
             ],
           ),
         )),

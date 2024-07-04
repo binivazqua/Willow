@@ -1,6 +1,7 @@
 import 'package:bejoy/components/userData/dropDown.dart';
 import 'package:bejoy/components/userData/longTextField.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -105,8 +106,8 @@ class _percepcionCorporalState extends State<percepcionCorporal> {
                 dropdownMenu(
                     defaultValue: periodicidad,
                     list: periodicidad_espejo,
-                    dropdownColor: Colors.white,
-                    textColor: Colors.black,
+                    dropdownColor: green,
+                    textColor: deepTurquoise,
                     theme: 'periodicidad',
                     onChanged: (p0) => {periodicidad = p0!},
                     helper: 'veces al día',
@@ -161,7 +162,15 @@ class _percepcionCorporalState extends State<percepcionCorporal> {
                     label: '',
                     fillColor: Colors.white,
                     filled: true),
-                ElevatedButton(onPressed: sendData, child: Text('Send data'))
+                ElevatedButton(
+                  onPressed: sendData,
+                  child: Text(
+                    'Send data',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(deepTurquoise)),
+                )
               ],
             ),
           ),

@@ -2,6 +2,8 @@ import 'package:bejoy/components/userData/checkbox.dart';
 import 'package:bejoy/components/userData/longTextField.dart';
 import 'package:bejoy/components/userData/rating.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
+import 'package:bejoy/components/userData/turquoiseButton.dart';
+import 'package:bejoy/design/colors/palette.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -374,7 +376,7 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                   minRating: 0,
                   itemBuilder: (context, _) => Icon(
                         Icons.star_rate_rounded,
-                        color: Colors.purple[100],
+                        color: green,
                         size: 10,
                       ),
                   onRatingUpdate: (rating) =>
@@ -392,10 +394,13 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                   itemCount: 5,
                   initialRating: 0,
                   minRating: 0,
-                  itemBuilder: (context, _) => Icon(
-                        Icons.help_sharp,
-                        color: Colors.purple[100],
-                        size: 10,
+                  itemBuilder: (context, _) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Icon(
+                          Icons.report_problem_rounded,
+                          color: green,
+                          size: 50,
+                        ),
                       ),
                   onRatingUpdate: (rating) =>
                       {_familiares = rating, print(_familiares)}),
@@ -410,10 +415,13 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                   itemCount: 5,
                   initialRating: 0,
                   minRating: 0,
-                  itemBuilder: (context, _) => Icon(
-                        Icons.help_sharp,
-                        color: Colors.purple[100],
-                        size: 10,
+                  itemBuilder: (context, _) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Icon(
+                          Icons.report_problem_rounded,
+                          color: green,
+                          size: 50,
+                        ),
                       ),
                   onRatingUpdate: (rating) =>
                       {_sociales = rating, print(_sociales)}),
@@ -425,10 +433,13 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                   itemCount: 5,
                   initialRating: 0,
                   minRating: 0,
-                  itemBuilder: (context, _) => Icon(
-                        Icons.help_sharp,
-                        color: Colors.purple[100],
-                        size: 10,
+                  itemBuilder: (context, _) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Icon(
+                          Icons.report_problem_rounded,
+                          color: green,
+                          size: 50,
+                        ),
                       ),
                   onRatingUpdate: (rating) =>
                       {_trauma = rating, print(_trauma)}),
@@ -440,10 +451,13 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                   itemCount: 5,
                   initialRating: 0,
                   minRating: 0,
-                  itemBuilder: (context, _) => Icon(
-                        Icons.help_sharp,
-                        color: Colors.purple[100],
-                        size: 10,
+                  itemBuilder: (context, _) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Icon(
+                          Icons.report_problem_rounded,
+                          color: green,
+                          size: 50,
+                        ),
                       ),
                   onRatingUpdate: (rating) =>
                       {_culturasdedieta = rating, print(_culturasdedieta)}),
@@ -460,7 +474,7 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                   minRating: 0,
                   itemBuilder: (context, _) => Icon(
                         Icons.star_rate_rounded,
-                        color: Colors.purple[100],
+                        color: green,
                         size: 10,
                       ),
                   onRatingUpdate: (rating) =>
@@ -475,7 +489,7 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                   minRating: 0,
                   itemBuilder: (context, _) => Icon(
                         Icons.star_rate_rounded,
-                        color: Colors.purple[100],
+                        color: green,
                         size: 10,
                       ),
                   onRatingUpdate: (rating) =>
@@ -490,7 +504,7 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                   minRating: 0,
                   itemBuilder: (context, _) => Icon(
                         Icons.star_rate_rounded,
-                        color: Colors.purple[100],
+                        color: green,
                         size: 10,
                       ),
                   onRatingUpdate: (rating) =>
@@ -505,7 +519,7 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                   minRating: 0,
                   itemBuilder: (context, _) => Icon(
                         Icons.star_rate_rounded,
-                        color: Colors.purple[100],
+                        color: green,
                         size: 10,
                       ),
                   onRatingUpdate: (rating) =>
@@ -725,6 +739,7 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
                     }),
               ),
               ListTile(
+                selectedColor: deepTurquoise,
                 title: Text(_duraciontratamiento[4]),
                 leading: Radio(
                     value: _duraciontratamiento[4],
@@ -738,7 +753,7 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
               SizedBox(
                 height: 15,
               ),
-              ElevatedButton(onPressed: _sendData, child: Text('Send')),
+              Turquoisebutton(txt: 'Send')
             ],
           ),
         ),
