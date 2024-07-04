@@ -35,4 +35,6 @@ flutter:
   assets:
     - lib/design/logos/willow_color_TXT.png
     - lib/design/logos/kanji.png
+    - lib/design/logos/willow_bw.png
+    - lib/design/logos/willow_tree.png
           
