@@ -1,4 +1,5 @@
 import 'package:bejoy/auth/registerPage.dart';
+import 'package:bejoy/auth/testing/logged.dart';
 import 'package:bejoy/components/logoTile.dart';
 import 'package:bejoy/components/textField.dart';
 import 'package:bejoy/design/colors/palette.dart';
@@ -17,9 +18,17 @@ class _loginPageeState extends State<loginPagee> {
   final _passwordController = TextEditingController();
 
   Future signInUser() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim());
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim());
+
+      MaterialPageRoute(builder: (context) => loggedPage());
+      print('User successfully signed in!');
+    } catch (error) {
+      print('Error signing in: $error');
+      return;
+    }
   }
 
   @override
