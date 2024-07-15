@@ -1,9 +1,12 @@
 import 'package:bejoy/auth/loginPage.dart';
 import 'package:bejoy/auth/testing/logged.dart';
+import 'package:bejoy/pages/foodlog/components/equivalentModel.dart';
 import 'package:bejoy/pages/foodlog/components/equivalentTile.dart';
+import 'package:bejoy/pages/foodlog/foodlogHome.dart';
 import 'package:bejoy/pages/foodlog/foodlogIntro.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class authVerif extends StatelessWidget {
   const authVerif({super.key});
@@ -18,16 +21,11 @@ class authVerif extends StatelessWidget {
             print('User signed in!');
             //return loggedPage();
             //return foodlogPage();
-            return Scaffold(
-              body: Column(
-                children: [
-                  EquivalentTile(
-                      equivName: 'Verduras',
-                      description: 'dnjscasd',
-                      iconPath:
-                          'lib/design/images/foodlog/almendras-sin-igual.png',
-                      color: Colors.deepOrange)
-                ],
+            return ChangeNotifierProvider(
+              create: (context) => Equivalent(),
+              child: MaterialApp(
+                debugShowCheckedModeBanner: false,
+                home: foodHome(),
               ),
             );
           } else {

@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_rating_bar: ^4.0.1
+  provider:
 
 dev_dependencies:
   flutter_test:
@@ -40,5 +41,9 @@ flutter:
     - lib/design/images/foodlog/lista-de-quehaceres.png
     - lib/design/images/foodlog/zanahoria.png
     - lib/design/images/foodlog/almendras-sin-igual.png
+    - lib/design/images/foodlog/acai.png
+    - lib/design/images/foodlog/leche.png
+    - lib/design/images/foodlog/pan-de-molde.png
+    - lib/design/images/foodlog/carne.png
 
           
