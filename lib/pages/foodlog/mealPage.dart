@@ -28,6 +28,13 @@ class mealPage extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
                           child: ListTile(
+                            trailing: IconButton(
+                              icon: Icon(Icons.remove),
+                              color: turquoise,
+                              onPressed: () => Provider.of<Equivalent>(context,
+                                      listen: false)
+                                  .removeEquiv(index),
+                            ),
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -42,7 +49,13 @@ class mealPage extends StatelessWidget {
                             ),
                           )),
                     );
-                  }))
+                  })),
+
+          // Calculate total equivs:
+          ElevatedButton(
+              onPressed: () => Provider.of<Equivalent>(context, listen: false)
+                  .calculateeachEquiv(value.mealItems),
+              child: Text('calculayte'))
         ]);
       }),
     );

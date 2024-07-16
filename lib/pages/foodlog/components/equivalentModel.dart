@@ -58,7 +58,32 @@ class Equivalent extends ChangeNotifier {
   }
 
   void removeEquiv(int index) {
-    _mealItems.removeAt(_mealItems[index]);
+    _mealItems.removeAt(index);
     notifyListeners();
+  }
+
+  double calculateeachEquiv(String itemToCount) {
+    double total = 0;
+
+    for (String item in _mealItems) {
+      if (item == itemToCount) {
+        total++;
+      }
+    }
+    return total;
+  }
+
+  Map<dynamic, int> countEquivs(List mealEquivs) {
+    Map<dynamic, int> frequencies = {};
+
+    for (var equiv in mealEquivs) {
+      if (frequencies.containsKey(equiv)) {
+        frequencies[equiv] = frequencies[equiv]! + 1;
+      } else {
+        frequencies[equiv] = 1;
+      }
+    }
+
+    return frequencies;
   }
 }
