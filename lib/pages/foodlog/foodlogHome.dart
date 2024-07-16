@@ -55,7 +55,10 @@ class foodHome extends StatelessWidget {
                         crossAxisCount: 2, childAspectRatio: 1 / 1.3),
                     itemBuilder: (context, index) {
                       return EquivalentTile(
-                          onP: () {},
+                          onP: () {
+                            Provider.of<Equivalent>(context, listen: false)
+                                .addEquiv(index);
+                          },
                           equivName: value.equivalents[index][0],
                           description: value.equivalents[index][1],
                           iconPath: value.equivalents[index][2],

@@ -47,5 +47,18 @@ class Equivalent extends ChangeNotifier {
     ],
   ];
 
+  List _mealItems = [];
+
   get equivalents => _equivalents;
+  get mealItems => _mealItems;
+
+  void addEquiv(int index) {
+    _mealItems.add(_equivalents[index]);
+    notifyListeners();
+  }
+
+  void removeEquiv(int index) {
+    _mealItems.removeAt(_mealItems[index]);
+    notifyListeners();
+  }
 }

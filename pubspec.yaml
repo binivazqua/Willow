@@ -45,5 +45,13 @@ flutter:
     - lib/design/images/foodlog/leche.png
     - lib/design/images/foodlog/pan-de-molde.png
     - lib/design/images/foodlog/carne.png
+    - lib/design/images/foodlog/minis/zanahoria_mini.png
+    - lib/design/images/foodlog/minis/acai_mini.png
+    - lib/design/images/foodlog/almendras-sin-igual.png
+    - lib/design/images/foodlog/minis/leche_mini.png
+    - lib/design/images/foodlog/minis/almendras-sin-igual_mini.png
+    - lib/design/images/foodlog/minis/pan-de-molde_mini.png
+    - lib/design/images/foodlog/minis/carne_mini.png
+    - lib/design/images/foodlog/minis/helado._mini.png
 
           
