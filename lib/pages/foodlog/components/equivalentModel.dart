@@ -52,11 +52,22 @@ class Equivalent extends ChangeNotifier {
   get equivalents => _equivalents;
   get mealItems => _mealItems;
 
+  // add equivalent only once
+
   void addEquiv(int index) {
     _mealItems.add(_equivalents[index]);
     notifyListeners();
   }
 
+  /*
+  void addEquiv(int index, int times) {
+    for (int i = 0; i < times; i++) {
+      _mealItems.add(_equivalents[index]);
+    }
+    notifyListeners();
+  }
+  */
+  // remove equivalent permanently.
   void removeEquiv(int index) {
     _mealItems.removeAt(index);
     notifyListeners();

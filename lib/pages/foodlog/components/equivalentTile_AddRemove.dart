@@ -51,6 +51,7 @@ class EquivalentTile extends StatelessWidget {
               ),
             ),
 
+            /*
             ElevatedButton(
               onPressed: onP,
               child: Text(
@@ -59,8 +60,7 @@ class EquivalentTile extends StatelessWidget {
               ),
               style: ButtonStyle(overlayColor: WidgetStatePropertyAll(color)),
             ),
-
-            /*
+            */
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -84,7 +84,7 @@ class EquivalentTile extends StatelessWidget {
                       color: Colors.white,
                     ))
               ],
-            )*/
+            )
           ],
         ),
       ),

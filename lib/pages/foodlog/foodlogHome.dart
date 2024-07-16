@@ -9,6 +9,7 @@ class foodHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController timesAdded = new TextEditingController();
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
@@ -55,14 +56,20 @@ class foodHome extends StatelessWidget {
                         crossAxisCount: 2, childAspectRatio: 1 / 1.3),
                     itemBuilder: (context, index) {
                       return EquivalentTile(
-                          onP: () {
-                            Provider.of<Equivalent>(context, listen: false)
-                                .addEquiv(index);
-                          },
-                          equivName: value.equivalents[index][0],
-                          description: value.equivalents[index][1],
-                          iconPath: value.equivalents[index][2],
-                          color: value.equivalents[index][3]);
+                        onP: () {
+                          Provider.of<Equivalent>(context, listen: false)
+                              .addEquiv(index);
+                        },
+                        onPR: () {
+                          Provider.of<Equivalent>(context, listen: false)
+                              .removeEquiv(index);
+                        },
+                        equivName: value.equivalents[index][0],
+                        description: value.equivalents[index][1],
+                        iconPath: value.equivalents[index][2],
+                        color: value.equivalents[index][3],
+                        times: timesAdded,
+                      );
                     });
               },
             ))
