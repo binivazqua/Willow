@@ -1,7 +1,7 @@
 import 'package:bejoy/components/textField.dart';
 import 'package:flutter/material.dart';
 
-class EquivalentTile extends StatelessWidget {
+class EquivalentTileAddRemove extends StatelessWidget {
   final String equivName;
   final String description;
   final String iconPath;
@@ -10,7 +10,7 @@ class EquivalentTile extends StatelessWidget {
   void Function()? onP;
   void Function()? onPR;
 
-  EquivalentTile({
+  EquivalentTileAddRemove({
     super.key,
     required this.equivName,
     required this.description,

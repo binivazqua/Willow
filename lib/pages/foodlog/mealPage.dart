@@ -52,9 +52,12 @@ class mealPage extends StatelessWidget {
                   })),
 
           // Calculate total equivs:
+
           ElevatedButton(
-              onPressed: () => Provider.of<Equivalent>(context, listen: false)
-                  .calculateeachEquiv(value.mealItems),
+              onPressed: () {
+                Provider.of<Equivalent>(context, listen: false)
+                    .printEquivalentCounts();
+              },
               child: Text('calculayte'))
         ]);
       }),
