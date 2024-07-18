@@ -1,9 +1,10 @@
 import 'package:bejoy/auth/loginPage.dart';
 import 'package:bejoy/auth/testing/logged.dart';
-import 'package:bejoy/pages/foodlog/components/equivalentModel.dart';
-import 'package:bejoy/pages/foodlog/components/equivalentTile.dart';
-import 'package:bejoy/pages/foodlog/foodlogHome.dart';
-import 'package:bejoy/pages/foodlog/foodlogIntro.dart';
+import 'package:bejoy/pages/foodlog/components/models/equivalentModel.dart';
+import 'package:bejoy/pages/foodlog/components/tiles/equivalentTile.dart';
+import 'package:bejoy/pages/subs/foodlogHome.dart';
+import 'package:bejoy/pages/subs/foodlogIntro.dart';
+import 'package:bejoy/pages/subs/mealLog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class authVerif extends StatelessWidget {
               create: (context) => Equivalent(),
               child: MaterialApp(
                 debugShowCheckedModeBanner: false,
-                home: foodHome(),
+                home: MealLogPage(),
               ),
             );
           } else {

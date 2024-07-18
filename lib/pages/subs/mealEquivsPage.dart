@@ -1,10 +1,10 @@
 import 'package:bejoy/design/colors/palette.dart';
-import 'package:bejoy/pages/foodlog/components/equivalentModel.dart';
+import 'package:bejoy/pages/foodlog/components/models/equivalentModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class mealPage extends StatelessWidget {
-  const mealPage({super.key});
+class mealEquivsPage extends StatelessWidget {
+  const mealEquivsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

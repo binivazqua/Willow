@@ -53,5 +53,11 @@ flutter:
     - lib/design/images/foodlog/minis/pan-de-molde_mini.png
     - lib/design/images/foodlog/minis/carne_mini.png
     - lib/design/images/foodlog/minis/helado._mini.png
+    - lib/design/images/foodlog/meals/escudella.png
+    - lib/design/images/foodlog/meals/sopa.png
+    - lib/design/images/foodlog/meals/taza_de_cafe.png
+    - lib/design/images/foodlog/meals/tiempo.png
+    - lib/design/images/foodlog/meals/terraza.png
+
 
           

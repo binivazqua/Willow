@@ -1,6 +1,6 @@
-import 'package:bejoy/pages/foodlog/components/equivalentModel.dart';
-import 'package:bejoy/pages/foodlog/components/equivalentTile.dart';
-import 'package:bejoy/pages/foodlog/mealPage.dart';
+import 'package:bejoy/pages/foodlog/components/models/equivalentModel.dart';
+import 'package:bejoy/pages/foodlog/components/tiles/equivalentTile.dart';
+import 'package:bejoy/pages/subs/mealEquivsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +19,7 @@ class foodHome extends StatelessWidget {
           ),
           onPressed: () =>
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return mealPage();
+                return mealEquivsPage();
               }))),
       body: SafeArea(
         child: Column(
