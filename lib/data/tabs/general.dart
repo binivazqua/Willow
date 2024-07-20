@@ -108,18 +108,21 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     shortTextField(
+                      dwidth: 100,
                       filled: true,
                       controller: atribute1,
                       label: '',
                       fillColor: Colors.purple[100],
                     ),
                     shortTextField(
+                      dwidth: 100,
                       controller: atribute2,
                       label: '',
                       fillColor: Colors.white,
                       filled: true,
                     ),
                     shortTextField(
+                      dwidth: 100,
                       filled: true,
                       controller: atribute3,
                       label: '',
@@ -148,6 +151,7 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
                           height: 15,
                         ),
                         shortTextField(
+                            dwidth: 100,
                             controller: comer_es,
                             label: '',
                             fillColor: Colors.white,
@@ -161,6 +165,7 @@ class _percepcionGeneralState extends State<percepcionGeneral> {
                           height: 15,
                         ),
                         shortTextField(
+                            dwidth: 100,
                             controller: comer_se_siente,
                             label: '',
                             filled: true)

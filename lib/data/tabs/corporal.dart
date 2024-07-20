@@ -141,11 +141,20 @@ class _percepcionCorporalState extends State<percepcionCorporal> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       shortTextField(
-                          controller: cuerpo1, label: 'cosa 1', filled: true),
+                          dwidth: 100,
+                          controller: cuerpo1,
+                          label: 'cosa 1',
+                          filled: true),
                       shortTextField(
-                          controller: cuerpo2, label: 'cosa 2', filled: true),
+                          dwidth: 100,
+                          controller: cuerpo2,
+                          label: 'cosa 2',
+                          filled: true),
                       shortTextField(
-                          controller: cuerpo3, label: 'cosa 3', filled: true),
+                          dwidth: 100,
+                          controller: cuerpo3,
+                          label: 'cosa 3',
+                          filled: true),
                     ],
                   ),
                 ),

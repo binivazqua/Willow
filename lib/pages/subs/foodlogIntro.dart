@@ -1,4 +1,5 @@
 import 'package:bejoy/components/userData/turquoiseButton.dart';
+import 'package:bejoy/pages/subs/foodLogDataFetch.dart';
 import 'package:bejoy/pages/subs/foodlogHome.dart';
 import 'package:bejoy/pages/subs/mealLog.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class foodlogPage extends StatelessWidget {
             txt: 'Go to log',
             op: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MealLogPage()));
+                  MaterialPageRoute(builder: (context) => Foodlogdatafetch()));
             },
           ),
         ],

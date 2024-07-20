@@ -26,7 +26,7 @@ class authVerif extends StatelessWidget {
               create: (context) => Equivalent(),
               child: MaterialApp(
                 debugShowCheckedModeBanner: false,
-                home: MealLogPage(),
+                home: foodlogPage(),
               ),
             );
           } else {

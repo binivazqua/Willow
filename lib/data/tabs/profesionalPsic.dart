@@ -543,7 +543,10 @@ class _profesionalPsicFisState extends State<profesionalPsicFis> {
               Text('Peso actual:'),
               SizedBox(height: 10),
               shortTextField(
-                  controller: _pesoactual, label: 'kg', filled: true),
+                  dwidth: 100,
+                  controller: _pesoactual,
+                  label: 'kg',
+                  filled: true),
               SizedBox(height: 15),
               Text('De acuerdo a su BMI, el paciente está en estado...'),
               ListTile(

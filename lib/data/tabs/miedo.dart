@@ -117,11 +117,20 @@ class _miedoSintomasState extends State<miedoSintomas> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   shortTextField(
-                      controller: _comer1, label: 'concepto', filled: true),
+                      dwidth: 100,
+                      controller: _comer1,
+                      label: 'concepto',
+                      filled: true),
                   shortTextField(
-                      controller: _comer2, label: 'concepto', filled: true),
+                      dwidth: 100,
+                      controller: _comer2,
+                      label: 'concepto',
+                      filled: true),
                   shortTextField(
-                      controller: _comer3, label: 'concepto', filled: true),
+                      dwidth: 100,
+                      controller: _comer3,
+                      label: 'concepto',
+                      filled: true),
                 ],
               ),
               SizedBox(
@@ -151,7 +160,10 @@ class _miedoSintomasState extends State<miedoSintomas> {
                       Text('¿Cuál es?'),
                       SizedBox(height: 10),
                       shortTextField(
-                          controller: _nomerecedora, label: '', filled: true)
+                          dwidth: 100,
+                          controller: _nomerecedora,
+                          label: '',
+                          filled: true)
                     ],
                   ),
                   Column(
@@ -159,6 +171,7 @@ class _miedoSintomasState extends State<miedoSintomas> {
                       Text('¿Por qué crees que es esto?'),
                       SizedBox(height: 10),
                       shortTextField(
+                          dwidth: 100,
                           controller: _porquenomerecedora,
                           label: '',
                           filled: true)
@@ -188,7 +201,10 @@ class _miedoSintomasState extends State<miedoSintomas> {
                       Text('¿Cuál es?'),
                       SizedBox(height: 10),
                       shortTextField(
-                          controller: _alimentomiedo, label: '', filled: true)
+                          dwidth: 100,
+                          controller: _alimentomiedo,
+                          label: '',
+                          filled: true)
                     ],
                   ),
                   Column(
@@ -196,6 +212,7 @@ class _miedoSintomasState extends State<miedoSintomas> {
                       Text('¿Por qué crees que es esto?'),
                       SizedBox(height: 10),
                       shortTextField(
+                          dwidth: 100,
                           controller: _porquemiedoalimento,
                           label: '',
                           filled: true),
