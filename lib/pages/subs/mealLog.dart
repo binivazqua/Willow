@@ -1,6 +1,9 @@
+import 'package:bejoy/components/userData/turquoiseButton.dart';
 import 'package:bejoy/design/colors/palette.dart';
 import 'package:bejoy/pages/foodlog/components/tiles/mealStack.dart';
 import 'package:bejoy/pages/foodlog/components/tiles/mealTile.dart';
+import 'package:bejoy/pages/subs/foodlogHome.dart';
+import 'package:bejoy/pages/subs/foodlogIntro.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -71,8 +74,20 @@ class MealLogPage extends StatelessWidget {
                             mealName: _meals[index][0],
                             iconPath: _meals[index][2],
                             color: _meals[index][3],
-                            onP: () {});
-                      }))
+                            onP: () {
+                              print('New ${_meals[index][0]} added!');
+                            });
+                      })),
+              SizedBox(
+                height: 20,
+              ),
+              Turquoisebutton(
+                txt: 'Add Equivs',
+                op: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => foodHome()));
+                },
+              ),
             ],
           ),
         ),

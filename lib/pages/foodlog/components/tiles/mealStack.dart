@@ -34,7 +34,7 @@ class MealStack extends StatelessWidget {
               mealName: mealName, iconPath: iconPath, color: color, onP: onP),
           Positioned(
             child: Image(image: AssetImage(iconPath)),
-            bottom: 10,
+            bottom: 6,
           ),
         ],
       ),

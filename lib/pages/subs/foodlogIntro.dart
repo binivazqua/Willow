@@ -1,5 +1,6 @@
 import 'package:bejoy/components/userData/turquoiseButton.dart';
 import 'package:bejoy/pages/subs/foodlogHome.dart';
+import 'package:bejoy/pages/subs/mealLog.dart';
 import 'package:flutter/material.dart';
 
 class foodlogPage extends StatelessWidget {
@@ -39,8 +40,8 @@ class foodlogPage extends StatelessWidget {
           Turquoisebutton(
             txt: 'Go to log',
             op: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => foodHome()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MealLogPage()));
             },
           ),
         ],

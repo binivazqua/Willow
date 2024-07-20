@@ -25,7 +25,7 @@ class MealTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       //padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(8),
 
       child: Container(
         height: 80,
