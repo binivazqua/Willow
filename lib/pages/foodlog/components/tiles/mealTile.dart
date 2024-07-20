@@ -28,27 +28,37 @@ class MealTile extends StatelessWidget {
       padding: const EdgeInsets.all(12),
 
       child: Container(
+        height: 80,
         decoration: BoxDecoration(
             color: color, borderRadius: BorderRadius.all(Radius.circular(20))),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // image
+            /*
             Image(
               image: AssetImage(iconPath),
               height: 60,
             ),
+            */
 
             Text(
               mealName,
-              style: TextStyle(fontWeight: FontWeight.w500),
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
             ),
 
             ElevatedButton(
               onPressed: onP,
               child: Text(
                 'Add',
-                style: TextStyle(fontSize: 10),
+                style: TextStyle(
+                  fontSize: 10,
+                  color: color,
+                ),
               ),
               style: ButtonStyle(overlayColor: WidgetStatePropertyAll(color)),
             ),
