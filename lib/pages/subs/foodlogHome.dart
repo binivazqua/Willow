@@ -11,6 +11,9 @@ class foodHome extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController timesAdded = new TextEditingController();
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(0, 0, 0, 0),
+      ),
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
           child: Icon(

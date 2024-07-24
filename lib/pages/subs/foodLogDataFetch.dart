@@ -1,5 +1,7 @@
 import 'package:bejoy/components/textField.dart';
 import 'package:bejoy/components/userData/shortTextField.dart';
+import 'package:bejoy/components/userData/turquoiseButton.dart';
+import 'package:bejoy/pages/subs/foodlogHome.dart';
 import 'package:flutter/material.dart';
 
 class Foodlogdatafetch extends StatefulWidget {
@@ -131,6 +133,16 @@ class _FoodlogdatafetchState extends State<Foodlogdatafetch> {
                 controller: leguminosas_equivs_controller,
                 filled: false,
                 dwidth: 150,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Turquoisebutton(
+                txt: 'Go to meal!',
+                op: () {
+                  Navigator.push((context),
+                      MaterialPageRoute(builder: (context) => foodHome()));
+                },
               )
             ]),
           ),
