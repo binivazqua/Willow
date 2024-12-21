@@ -12,6 +12,11 @@ class _UserPageState extends State<UserPage> {
   MyUser user = MyUser(n: "Panchita", g: "female");
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        body: Center(
+      child: Column(
+        children: [Text(user.name), Text(user.gender)],
+      ),
+    ));
   }
 }
